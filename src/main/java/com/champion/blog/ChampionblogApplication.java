@@ -1,7 +1,6 @@
 package com.champion.blog;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,9 +18,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySource(value = "classpath:/env.properties")
 @EnableScheduling
 @EnableCaching
-public class ChampionApplication {
+public class ChampionblogApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ChampionApplication.class, args);
+        SpringApplication.run(ChampionblogApplication.class, args);
     }
 }
