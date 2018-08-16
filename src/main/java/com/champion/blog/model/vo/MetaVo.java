@@ -2,12 +2,10 @@ package com.champion.blog.model.vo;
 
 import java.io.Serializable;
 
+/**
+ * 文章元数据
+ */
 public class MetaVo implements Serializable {
-
-    /**
-     * 项目主键
-     */
-    private Integer mid;
 
     /**
      * 名称
@@ -37,14 +35,6 @@ public class MetaVo implements Serializable {
     private Integer parent;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getMid() {
-        return mid;
-    }
-
-    public void setMid(Integer mid) {
-        this.mid = mid;
-    }
 
     public String getName() {
         return name;

@@ -1,6 +1,8 @@
 package com.champion.blog.service;
 
 import com.champion.blog.model.vo.ContentVo;
+import com.champion.blog.model.vo.ContentVoExample;
+import com.github.pagehelper.PageInfo;
 import org.springframework.data.domain.Page;
 
 public interface ContentService {
@@ -40,7 +42,7 @@ public interface ContentService {
      * @param limit limit
      * @return ContentVo
      */
-    Page<ContentVo> getArticles(Integer mid, int page, int limit);
+    PageInfo<ContentVo> getArticles(Integer mid, int page, int limit);
 
     /**
      * 搜索、分页
@@ -49,7 +51,15 @@ public interface ContentService {
      * @param limit limit
      * @return ContentVo
      */
-    Page<ContentVo> getArticles(String keyword,Integer page,Integer limit);
+    PageInfo<ContentVo> getArticles(String keyword,Integer page,Integer limit);
+
+    /**
+     * @param commentVoExample
+     * @param page
+     * @param limit
+     * @return
+     */
+    PageInfo<ContentVo> getArticlesWithpage(ContentVoExample commentVoExample, Integer page, Integer limit);
 
     /**
      * 根据文章id删除

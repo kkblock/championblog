@@ -3,7 +3,7 @@ package com.champion.blog.model.vo;
 import java.io.Serializable;
 
 /**
- * log
+ * log日志记录
  */
 public class LogVo implements Serializable {
 

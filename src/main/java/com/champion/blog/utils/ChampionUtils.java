@@ -12,6 +12,7 @@ import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
@@ -114,24 +115,24 @@ public class ChampionUtils {
      *
      * @return
      */
-//    public static DataSource getNewDataSource() {
-//        if (newDataSource == null) synchronized (ChampionUtils.class) {
-//            if (newDataSource == null) {
-//                Properties properties = ChampionUtils.getPropFromFile("application-default.properties");
-//                if (properties.size() == 0) {
-//                    return newDataSource;
-//                }
-//                DriverManagerDataSource managerDataSource = new DriverManagerDataSource();
-//                managerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//                managerDataSource.setPassword(properties.getProperty("spring.datasource.password"));
-//                String str = "jdbc:mysql://" + properties.getProperty("spring.datasource.url") + "/" + properties.getProperty("spring.datasource.dbname") + "?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-//                managerDataSource.setUrl(str);
-//                managerDataSource.setUsername(properties.getProperty("spring.datasource.username"));
-//                newDataSource = managerDataSource;
-//            }
-//        }
-//        return newDataSource;
-//    }
+    public static DataSource getNewDataSource() {
+        if (newDataSource == null) synchronized (ChampionUtils.class) {
+            if (newDataSource == null) {
+                Properties properties = ChampionUtils.getPropFromFile("application-default.properties");
+                if (properties.size() == 0) {
+                    return newDataSource;
+                }
+                DriverManagerDataSource managerDataSource = new DriverManagerDataSource();
+                managerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+                managerDataSource.setPassword(properties.getProperty("spring.datasource.password"));
+                String str = "jdbc:mysql://" + properties.getProperty("spring.datasource.url") + "/" + properties.getProperty("spring.datasource.dbname") + "?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+                managerDataSource.setUrl(str);
+                managerDataSource.setUsername(properties.getProperty("spring.datasource.username"));
+                newDataSource = managerDataSource;
+            }
+        }
+        return newDataSource;
+    }
 
     /**
      * 返回当前登录用户

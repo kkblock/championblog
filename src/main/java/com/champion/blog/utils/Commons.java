@@ -2,6 +2,7 @@ package com.champion.blog.utils;
 
 import com.champion.blog.constant.WebConst;
 import com.champion.blog.model.vo.ContentVo;
+import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -27,9 +28,9 @@ public final class Commons {
      * @param paginator mybatis PageInfo
      * @return boolean ,have data？
      */
-//    public static boolean is_empty(PageInfo paginator) {
-//        return paginator == null || (paginator.getList() == null) || (paginator.getList().size() == 0);
-//    }
+    public static boolean is_empty(PageInfo paginator) {
+        return paginator == null || (paginator.getList() == null) || (paginator.getList().size() == 0);
+    }
 
     /**
      * 网站链接

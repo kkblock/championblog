@@ -2,6 +2,9 @@ package com.champion.blog.model.vo;
 
 import java.io.Serializable;
 
+/**
+ * 文章内容和元数据得关联实体
+ */
 public class RelationshipVoKey implements Serializable {
     /**
      * 内容主键
