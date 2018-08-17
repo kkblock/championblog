@@ -19,7 +19,7 @@ public interface ContentService {
      * @param limit 每页条数
      * @return ContentVo
      */
-    Page<ContentVo> getContents(Integer p, Integer limit);
+    PageInfo<ContentVo> getContents(Integer p, Integer limit);
 
     /**
      * 根据id或slug获取文章

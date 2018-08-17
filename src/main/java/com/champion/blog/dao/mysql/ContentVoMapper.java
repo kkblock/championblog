@@ -38,7 +38,17 @@ public interface ContentVoMapper {
 
     int updateByPrimaryKey(ContentVo record);
 
+    /**
+     * 查询已发布得文章
+     * @return List<ArchiveBo>
+     */
     List<ArchiveBo> findReturnArchiveBo();
 
+    /**
+     * 通过mid 查询已经发布得文章
+     * @param mid mid
+     * @return List<ContentVo>
+     */
     List<ContentVo> findByCatalog(Integer mid);
+
 }

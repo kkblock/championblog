@@ -2,8 +2,6 @@ package com.champion.blog.model.bo;
 
 /**
  * rest返回对象
- *^
- * @param <T>
  */
 public class RestResponseBo<T> {
 

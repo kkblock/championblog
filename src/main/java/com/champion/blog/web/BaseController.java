@@ -3,6 +3,7 @@ package com.champion.blog.web;
 import com.champion.blog.model.vo.UserVo;
 import com.champion.blog.utils.ChampionUtils;
 import com.champion.blog.utils.EhcacheUtils;
+import com.champion.blog.utils.MapCache;
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 
@@ -19,7 +20,7 @@ public abstract class BaseController {
     protected  CacheManager cacheManager = new EhcacheUtils().getInstance();
     // 获取初始化的缓存对象
 //    protected  Cache<String, String> mineCache = cacheManager.getCache("defaultCache", String.class, String.class);
-
+    protected MapCache cache = MapCache.single();
     /**
      * 主页的页面主题
      * @param viewName viewName

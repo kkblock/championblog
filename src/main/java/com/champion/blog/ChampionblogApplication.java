@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
@@ -18,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySource(value = "classpath:/env.properties")
 @EnableScheduling
 @EnableCaching
+@EnableTransactionManagement
 public class ChampionblogApplication {
 
     public static void main(String[] args) {

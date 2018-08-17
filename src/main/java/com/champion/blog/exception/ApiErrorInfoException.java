@@ -14,6 +14,10 @@ public class ApiErrorInfoException extends RuntimeException {
         this.data = data ;
     }
 
+    public ApiErrorInfoException(String message){
+        this(null,message,null,null);
+    }
+
     public ApiErrorInfoException(Long errorCode,String message,Object data){
         this(errorCode,message,data,null);
     }

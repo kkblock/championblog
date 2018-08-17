@@ -8,6 +8,11 @@ import java.io.Serializable;
 public class MetaVo implements Serializable {
 
     /**
+     * 项目主键
+     */
+    private Integer mid;
+
+    /**
      * 名称
      */
     private String name;
@@ -84,4 +89,11 @@ public class MetaVo implements Serializable {
         this.parent = parent;
     }
 
+    public Integer getMid() {
+        return mid;
+    }
+
+    public void setMid(Integer mid) {
+        this.mid = mid;
+    }
 }
