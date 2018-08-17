@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class BaseInterceptor implements HandlerInterceptor {
 
-    private static final Logger LOGGE = LoggerFactory.getLogger(BaseInterceptor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BaseInterceptor.class);
     private static final String USER_AGENT = "user-agent";
 
     @Resource
@@ -43,11 +43,10 @@ public class BaseInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String contextPath = request.getContextPath();
-        // System.out.println(contextPath);
         String uri = request.getRequestURI();
 
-        LOGGE.info("UserAgent: {}", request.getHeader(USER_AGENT));
-        LOGGE.info("用户访问地址: {}, 来路地址: {}", uri, IPKit.getIpAddrByRequest(request));
+        LOG.info("UserAgent: {}", request.getHeader(USER_AGENT));
+        LOG.info("用户访问地址: {}, 来路地址: {}", uri, IPKit.getIpAddrByRequest(request));
 
 
         //请求拦截处理
