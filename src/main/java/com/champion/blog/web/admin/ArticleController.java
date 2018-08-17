@@ -34,10 +34,10 @@ public class ArticleController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 
     @Resource
-    private ContentService contentsService;
+    private ContentService contentService;
 
     @Resource
-    private MetaService metasService;
+    private MetaService metaService;
 
     @Resource
     private LogService logService;
@@ -48,23 +48,23 @@ public class ArticleController extends BaseController {
         ContentVoExample contentVoExample = new ContentVoExample();
         contentVoExample.setOrderByClause("created desc");
         contentVoExample.createCriteria().andTypeEqualTo(Types.ARTICLE.getType());
-        PageInfo<ContentVo> contentsPaginator = contentsService.getArticlesWithpage(contentVoExample, page, limit);
+        PageInfo<ContentVo> contentsPaginator = contentService.getArticlesWithpage(contentVoExample, page, limit);
         request.setAttribute("articles", contentsPaginator);
         return "admin/article_list";
     }
 
     @GetMapping(value = "/publish")
     public String newArticle(HttpServletRequest request) {
-        List<MetaVo> categories = metasService.getMetas(Types.CATEGORY.getType());
+        List<MetaVo> categories = metaService.getMetas(Types.CATEGORY.getType());
         request.setAttribute("categories", categories);
         return "admin/article_edit";
     }
 
     @GetMapping(value = "/{cid}")
     public String editArticle(@PathVariable String cid, HttpServletRequest request) {
-        ContentVo contents = contentsService.getContents(cid);
+        ContentVo contents = contentService.getContents(cid);
         request.setAttribute("contents", contents);
-        List<MetaVo> categories = metasService.getMetas(Types.CATEGORY.getType());
+        List<MetaVo> categories = metaService.getMetas(Types.CATEGORY.getType());
         request.setAttribute("categories", categories);
         request.setAttribute("active", "article");
         return "admin/article_edit";
@@ -79,7 +79,7 @@ public class ArticleController extends BaseController {
         if (StringUtils.isBlank(contents.getCategories())) {
             contents.setCategories("默认分类");
         }
-        String result = contentsService.publish(contents);
+        String result = contentService.publish(contents);
         if (!WebConst.SUCCESS_RESULT.equals(result)) {
             return RestResponseBo.fail(result);
         }
@@ -92,7 +92,7 @@ public class ArticleController extends BaseController {
         UserVo users = this.user(request);
         contents.setAuthorId(users.getUid());
         contents.setType(Types.ARTICLE.getType());
-        String result = contentsService.updateArticle(contents);
+        String result = contentService.updateArticle(contents);
         if (!WebConst.SUCCESS_RESULT.equals(result)) {
             return RestResponseBo.fail(result);
         }
@@ -102,7 +102,7 @@ public class ArticleController extends BaseController {
     @RequestMapping(value = "/delete")
     @ResponseBody
     public RestResponseBo delete(@RequestParam int cid, HttpServletRequest request) {
-        String result = contentsService.deleteByCid(cid);
+        String result = contentService.deleteByCid(cid);
         logService.insertLog(LogActions.DEL_ARTICLE.getAction(), cid + "", request.getRemoteAddr(), this.getUid(request));
         if (!WebConst.SUCCESS_RESULT.equals(result)) {
             return RestResponseBo.fail(result);
