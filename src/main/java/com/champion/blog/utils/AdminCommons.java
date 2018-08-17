@@ -14,8 +14,8 @@ public final class AdminCommons {
     /**
      * 判断category和cat的交集
      *
-     * @param cats
-     * @return
+     * @param cats cats
+     * @return boolean
      */
     public static boolean exist_cat(MetaVo category, String cats) {
         String[] arr = StringUtils.split(cats, ",");
