@@ -27,21 +27,21 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service
+@Service(value = "contentService")
 public class ContentServiceImpl implements ContentService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentServiceImpl.class);
 
-    @Resource
+    @Autowired
     private ContentVoMapper contentDao;
 
-    @Resource
+    @Autowired
     private MetaVoMapper metaDao;
 
-    @Resource
+    @Autowired
     private RelationshipService relationshipService;
 
-    @Resource
+    @Autowired
     private MetaService metasService;
 
     @Override

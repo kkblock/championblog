@@ -4,10 +4,11 @@ import com.champion.blog.model.vo.LogVo;
 import com.champion.blog.model.vo.LogVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component(value = "logDao")
+@Repository(value = "logDao")
 public interface LogVoMapper {
     long countByExample(LogVoExample example);
 

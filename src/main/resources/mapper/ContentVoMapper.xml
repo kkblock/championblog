@@ -460,7 +460,7 @@
     </update>
 
 
-    <resultMap id="archiveBoMap" type="com.my.blog.website.model.Bo.ArchiveBo">
+    <resultMap id="archiveBoMap" type="com.champion.blog.model.bo.ArchiveBo">
         <id column="date" property="date"/>
         <result column="count" property="count"/>
     </resultMap>
@@ -476,7 +476,7 @@
     </select>
 
 
-    <select id="findByCatalog" resultMap="BaseResultMap" parameterType="Integer">
+    <select id="findByCatalog" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT a.*
         FROM t_contents a LEFT JOIN t_relationships b ON a.cid = b.cid
         WHERE b.mid = #{value} AND a.status = 'publish' AND a.type = 'post'

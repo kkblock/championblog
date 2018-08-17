@@ -5,10 +5,11 @@ import com.champion.blog.model.vo.ContentVo;
 import com.champion.blog.model.vo.ContentVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component(value = "contentDao")
+@Repository(value = "contentDao")
 public interface ContentVoMapper {
     long countByExample(ContentVoExample example);
 

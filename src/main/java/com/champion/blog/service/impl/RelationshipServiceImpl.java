@@ -6,6 +6,7 @@ import com.champion.blog.model.vo.RelationshipVoKey;
 import com.champion.blog.service.RelationshipService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +17,7 @@ public class RelationshipServiceImpl implements RelationshipService {
 
     private static final Logger LOG = LoggerFactory.getLogger(RelationshipServiceImpl.class);
 
-    @Resource
+    @Autowired
     private RelationshipVoMapper relationshipVoMapper;
 
     /**

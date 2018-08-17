@@ -4,10 +4,11 @@ import com.champion.blog.model.vo.UserVo;
 import com.champion.blog.model.vo.UserVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component(value = "userDao")
+@Repository(value = "userDao")
 public interface UserVoMapper {
     long countByExample(UserVoExample example);
 

@@ -16,6 +16,7 @@ import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,10 +29,10 @@ public class CommentServiceImpl implements CommentService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 
-    @Resource
+    @Autowired
     private CommentVoMapper commentDao;
 
-    @Resource
+    @Autowired
     private ContentService contentService;
 
     @Override

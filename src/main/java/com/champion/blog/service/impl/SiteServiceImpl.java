@@ -22,6 +22,7 @@ import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,16 +37,16 @@ public class SiteServiceImpl implements SiteService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SiteServiceImpl.class);
 
-    @Resource
+    @Autowired
     private CommentVoMapper commentDao;
 
-    @Resource
+    @Autowired
     private ContentVoMapper contentDao;
 
-    @Resource
+    @Autowired
     private AttachVoMapper attachDao;
 
-    @Resource
+    @Autowired
     private MetaVoMapper metaDao;
 
     @Override

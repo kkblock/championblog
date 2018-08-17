@@ -4,10 +4,11 @@ import com.champion.blog.model.vo.OptionVo;
 import com.champion.blog.model.vo.OptionVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component(value = "optionDao")
+@Repository(value = "optionDao")
 public interface OptionVoMapper {
     long countByExample(OptionVoExample example);
 

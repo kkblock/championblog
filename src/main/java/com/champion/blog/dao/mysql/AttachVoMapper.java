@@ -4,10 +4,11 @@ import com.champion.blog.model.vo.AttachVo;
 import com.champion.blog.model.vo.AttachVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component(value = "attachDao")
+@Repository(value = "attachDao")
 public interface AttachVoMapper {
     long countByExample(AttachVoExample example);
 

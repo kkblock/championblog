@@ -5,11 +5,12 @@ import com.champion.blog.model.vo.MetaVo;
 import com.champion.blog.model.vo.MetaVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
-@Component(value = "metaDao")
+@Repository(value = "metaDao")
 public interface MetaVoMapper {
     long countByExample(MetaVoExample example);
 

@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ public class AttachServiceImpl implements AttachService {
 
     private static final Logger LOG = LoggerFactory.getLogger(AttachServiceImpl.class);
 
-    @Resource
+    @Autowired
     private AttachVoMapper attachDao;
 
     /**
@@ -70,10 +71,6 @@ public class AttachServiceImpl implements AttachService {
         return null;
     }
 
-    /**
-     * 删除附件
-     * @param id id
-     */
     @Override
     @Transactional
     public void deleteById(Integer id) {

@@ -4,10 +4,11 @@ import com.champion.blog.model.vo.CommentVo;
 import com.champion.blog.model.vo.CommentVoExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component(value = "commentDao")
+@Repository(value = "commentDao")
 public interface CommentVoMapper {
     long countByExample(CommentVoExample example);
 
