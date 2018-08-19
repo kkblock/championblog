@@ -27,7 +27,7 @@ public class HelloWorldTest {
 
     @Before
     public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(new CityController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup().build();
     }
 
     @Test
