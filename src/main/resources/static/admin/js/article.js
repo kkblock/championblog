@@ -21,6 +21,7 @@ $(".select2").select2({
 });
 
 var tale = new $.tale();
+var ctxPath = getContextPath();
 
 /**
  * 保存文章
@@ -41,7 +42,7 @@ function subArticle(status) {
     $("#articleForm #status").val(status);
     $("#articleForm #categories").val($('#multiple-sel').val());
     var params = $("#articleForm").serialize();
-    var url = $('#articleForm #cid').val() != '' ? '/admin/article/modify' : '/admin/article/publish';
+    var url = $('#articleForm #cid').val() != '' ? ctxPath + '/admin/article/modify' : ctxPath + '/admin/article/publish';
     tale.post({
         url:url,
         data:params,
@@ -51,7 +52,7 @@ function subArticle(status) {
                     text:'文章保存成功',
                     then: function () {
                         setTimeout(function () {
-                            window.location.href = '/admin/article';
+                            window.location.href = ctxPath + '/admin/article';
                         }, 500);
                     }
                 });
@@ -113,3 +114,10 @@ $('div.allow-false').toggles({
         off: '关闭'
     }
 });
+
+function getContextPath() {
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    return result;
+}

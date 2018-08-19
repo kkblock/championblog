@@ -19,7 +19,7 @@ import java.util.List;
 public class LogServiceImpl implements LogService {
     private static final Logger LOG = LoggerFactory.getLogger(LogServiceImpl.class);
 
-    @Autowired
+    @Resource
     private LogVoMapper logDao;
 
     /**

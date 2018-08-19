@@ -68,12 +68,13 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
+    var ctxPath = getContextPath();
     function delPost(cid) {
         tale.alertConfirm({
             title:'确定删除该文章吗?',
             then: function () {
                 tale.post({
-                    url : '/admin/article/delete',
+                    url : ctxPath + '/admin/article/delete',
                     data: {cid: cid},
                     success: function (result) {
                         if(result && result.success){
@@ -87,6 +88,12 @@
         });
     }
     /*]]>*/
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 </body>
 </html>

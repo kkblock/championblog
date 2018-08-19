@@ -116,10 +116,10 @@
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-
+    var ctxPath = getContextPath();
     $("#dropzone").dropzone({
         paramName: "file",
-        url: "/admin/attach/upload",
+        url: ctxPath + "/admin/attach/upload",
         maxFilesize: 1,
         init: function () {
             this.on("success", function (file, msg) {
@@ -151,7 +151,7 @@
             title: '确定删除该附件吗?',
             then: function () {
                 tale.post({
-                    url: '/admin/attach/delete',
+                    url: ctxPath + '/admin/attach/delete',
                     data: {id: id},
                     success: function (result) {
                         if (result && result.success) {
@@ -165,6 +165,12 @@
         });
     }
     /*]]>*/
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 </body>
 </html>

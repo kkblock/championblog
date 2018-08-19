@@ -4,6 +4,7 @@
 !function ($) {
     "use strict";
     var tale = new $.tale();
+    var ctxPath = getContextPath();
     var FormWizard = function () {
     };
     //creates form with validation
@@ -39,13 +40,13 @@
                     isValid = false;
                     var params = $form_container.serialize();
                     tale.post({
-                        url: '/install/testCon',
+                        url: ctxPath + '/install/testCon',
                         data: params,
                         success: function (result) {
                             if (result && result.success) {
                                 tale.showLoading();
                                 tale.post({
-                                    url: '/install',
+                                    url: ctxPath + '/install',
                                     data: params,
                                     success: function (result) {
                                         if (result && result.success) {
@@ -74,11 +75,11 @@
             onFinishing: function (event, currentIndex) {
                 $form_container.validate().settings.ignore = ":disabled";
                 var isValid = $form_container.valid();
-                window.location.href = "/admin/login";
+                window.location.href = ctxPath + "/admin/login";
                 return isValid;
             },
             onFinished: function (event, currentIndex) {
-                window.location.href = "/admin/login";
+                window.location.href = ctxPath + "/admin/login";
             }
         });
         return $form_container;
@@ -86,3 +87,10 @@
         //init
         $.FormWizard = new FormWizard, $.FormWizard.Constructor = FormWizard
 }(window.jQuery), $.FormWizard.init();
+
+function getContextPath() {
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    return result;
+}

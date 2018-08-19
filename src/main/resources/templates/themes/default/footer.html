@@ -158,6 +158,7 @@
 <script th:src="@{//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
+    var ctxPath = getContextPath();
     var isOk = [[${is_post}]];
     if (isOk) {
         var postDirectory = new Headroom(document.getElementById("directory-content"), {
@@ -187,11 +188,17 @@
         if (key == 13) {
             var q = $(this).val();
             if (q && q != '') {
-                window.location.href = '/search/' + q;
+                window.location.href = ctxPath + '/search/' + q;
             }
         }
     });
     /*]]>*/
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 <script data-no-instant="">
     /*<![CDATA[*/

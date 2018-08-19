@@ -4,6 +4,7 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     (function () {
+        var ctxPath = getContextPath();
         window.TaleComment = {
             dom: function (id) {
                 return document.getElementById(id);
@@ -23,7 +24,7 @@
             subComment: function () {
                 $.ajax({
                     type: 'post',
-                    url: '/comment',
+                    url: ctxPath + '/comment',
                     data: $('#comment-form').serialize(),
                     async: false,
                     dataType: 'json',
@@ -57,6 +58,13 @@
     }
     addCommentInputValue();
     /*]]>*/
+
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 </body>
 </html>

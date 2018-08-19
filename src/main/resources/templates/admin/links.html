@@ -94,12 +94,12 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-
+    var ctxPath = getContextPath();
     $('#linkForm').validate({
         submitHandler: function (form) {
             var params = $("#linkForm").serialize();
             tale.post({
-                url : '/admin/links/save',
+                url : ctxPath + '/admin/links/save',
                 data: params,
                 success: function (result) {
                     $('#linkForm input').val('');
@@ -135,7 +135,7 @@
             title:'确定删除该链接吗?',
             then: function () {
                 tale.post({
-                    url : '/admin/links/delete',
+                    url : ctxPath + '/admin/links/delete',
                     data: {mid: mid},
                     success: function (result) {
                         if(result && result.success){
@@ -149,6 +149,12 @@
         });
     }
     /*]]>*/
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 </body>
 </html>

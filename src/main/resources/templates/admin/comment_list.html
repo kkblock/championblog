@@ -71,13 +71,13 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-
+    var ctxPath = getContextPath();
     function delComment(coid) {
         tale.alertConfirm({
             title: '确定删除该评论吗?',
             then: function () {
                 tale.post({
-                    url: '/admin/comments/delete',
+                    url: ctxPath + '/admin/comments/delete',
                     data: {coid: coid},
                     success: function (result) {
                         if (result && result.success) {
@@ -96,7 +96,7 @@
             title: '确定审核通过吗?',
             then: function () {
                 tale.post({
-                    url: '/admin/comments/status',
+                    url: ctxPath + '/admin/comments/status',
                     data: {coid: coid, status: "approved"},
                     success: function (result) {
                         if (result && result.success) {
@@ -110,6 +110,12 @@
         });
     }
     /*]]>*/
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 </body>
 </html>

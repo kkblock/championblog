@@ -32,16 +32,16 @@ public class ContentServiceImpl implements ContentService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentServiceImpl.class);
 
-    @Autowired
+    @Resource
     private ContentVoMapper contentDao;
 
-    @Autowired
+    @Resource
     private MetaVoMapper metaDao;
 
-    @Autowired
+    @Resource
     private RelationshipService relationshipService;
 
-    @Autowired
+    @Resource
     private MetaService metasService;
 
     @Override

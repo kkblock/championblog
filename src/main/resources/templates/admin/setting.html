@@ -140,16 +140,22 @@
 <div th:replace="admin/footer :: footer"></div>
 <script src="//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js"></script>
 <script type="text/javascript">
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
     /*<![CDATA[*/
     var tale = new $.tale();
-
+    var ctxPath = getContextPath();
     /**
      * 保存全局设置
      */
     function saveSetting() {
         var param = $('#global-form').serialize();
         tale.post({
-            url : '/admin/setting',
+            url : ctxPath + '/admin/setting',
             data: param,
             success: function (result) {
                 if(result && result.success){
@@ -167,7 +173,7 @@
     function saveIndiviSetting() {
         var param = $('#indivi-form').serialize();
         tale.post({
-            url : '/admin/setting',
+            url : ctxPath + '/admin/setting',
             data: param,
             success: function (result) {
                 if(result && result.success){
@@ -203,7 +209,7 @@
             bk_path: $('#backup_dir').val()
         };
         tale.post({
-            url : '/admin/setting/backup',
+            url : ctxPath + '/admin/setting/backup',
             data: param,
             success: function (result) {
                 if(result && result.success){
@@ -213,7 +219,7 @@
                         $('#backup_dir').val('');
                     }
                     if(result.payload.sql_path){
-                        window.location.href = '/upload/' + result.payload.sql_path;
+                        window.location.href = ctxPath + '/upload/' + result.payload.sql_path;
                     }
                 } else {
                     tale.alertError(result.msg || '备份失败');

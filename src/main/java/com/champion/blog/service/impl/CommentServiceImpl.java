@@ -29,10 +29,10 @@ public class CommentServiceImpl implements CommentService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 
-    @Autowired
+    @Resource
     private CommentVoMapper commentDao;
 
-    @Autowired
+    @Resource
     private ContentService contentService;
 
     @Override

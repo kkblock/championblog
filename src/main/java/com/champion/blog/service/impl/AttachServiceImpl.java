@@ -21,7 +21,7 @@ public class AttachServiceImpl implements AttachService {
 
     private static final Logger LOG = LoggerFactory.getLogger(AttachServiceImpl.class);
 
-    @Autowired
+    @Resource
     private AttachVoMapper attachDao;
 
     /**

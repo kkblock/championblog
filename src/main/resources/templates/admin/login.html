@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="pic=${commons.random(5, '.png')}" th:style="'background:url(/admin/images/bg/'+@{${pic}}+');no-repeat; background-size: cover;'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="pic=${commons.random(5, '.png')}"
+      th:style="'background:url(' + ${#httpServletRequest.getContextPath()} + '/admin/images/bg/'+@{${pic}}+');no-repeat; background-size: cover;'">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <link rel="shortcut icon" th:href="@{/admin/images/favicon.png}"/>
+    <link rel="shortcut icon" th:href="'@{' + ${#httpServletRequest.getContextPath()} + '/admin/images/favicon.png}'"/>
     <title>My Blog - 用户登录</title>
     <link th:href="@{//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
@@ -49,7 +50,7 @@
     </style>
 
 </head>
-<body th:style="'background:url(/admin/images/bg/'+@{${pic}}+');no-repeat; background-size: cover;'" >
+<body th:style="'background:url(' + ${#httpServletRequest.getContextPath()} + '/admin/images/bg/'+@{${pic}}+');no-repeat; background-size: cover;'" >
 <div style="margin: 0 auto; padding-bottom: 0%; padding-top: 7.5%; width: 380px;">
     <div class="panel panel-color panel-danger panel-pages panel-shadow">
         <div class="panel-heading bg-img">
@@ -95,14 +96,16 @@
 <script th:src="@{/admin/js/base.js}"></script>
 <script type="text/javascript">
     /*<![CDATA[*/
+    var ctxPath = getContextPath();
+    console.log(ctxPath);
     var tale = new $.tale();
     function checkForm() {
         tale.post({
-            url: '/admin/login',
+            url: ctxPath + '/admin/login',
             data: $("#loginForm").serialize(),
             success: function (result) {
                 if (result && result.success) {
-                    window.location.href = '/admin/index';
+                    window.location.href = ctxPath + '/admin/index';
                 } else {
                     tale.alertError(result.msg || '登录失败');
                 }
@@ -111,6 +114,13 @@
         return false;
     }
     /*]]>*/
+
+    function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result;
+    }
 </script>
 </body>
 </html>
