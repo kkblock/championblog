@@ -1,7 +1,6 @@
 package com.champion.blog;
 
 import com.champion.blog.utils.EhcacheUtils;
-import com.champion.blog.web.CityController;
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.junit.Before;
