@@ -113,6 +113,7 @@
 <div th:replace="admin/footer :: footer"></div>
 <script src="//cdn.bootcss.com/dropzone/4.3.0/min/dropzone.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.6.0/clipboard.min.js"></script>
+<script type="application/javascript" th:href="@{/public/js/championblog.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
@@ -165,12 +166,6 @@
         });
     }
     /*]]>*/
-    function getContextPath() {
-        var pathName = document.location.pathname;
-        var index = pathName.substr(1).indexOf("/");
-        var result = pathName.substr(0,index+1);
-        return result;
-    }
 </script>
 </body>
 </html>

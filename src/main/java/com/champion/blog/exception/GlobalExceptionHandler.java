@@ -14,6 +14,11 @@ public class GlobalExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    /**
+     * Controller 异常切面
+     * @param e Exception
+     * @return 要跳转得页面
+     */
     @ExceptionHandler(value = TipException.class)
     public String tipException(Exception e) {
         LOGGER.error("find exception:e={}",e.getMessage());
@@ -21,7 +26,11 @@ public class GlobalExceptionHandler {
         return "comm/error_500";
     }
 
-
+    /**
+     * Controller 异常切面
+     * @param e Exception
+     * @return 要跳转得页面
+     */
     @ExceptionHandler(value = Exception.class)
     public String exception(Exception e){
         LOGGER.error("find exception:e={}",e.getMessage());
@@ -29,6 +38,12 @@ public class GlobalExceptionHandler {
         return "comm/error_404";
     }
 
+    /**
+     * 切 ApiErrorInfoException 异常
+     * @param exception ApiErrorInfoException
+     * @param response HttpServletResponse
+     * @return ResultBody
+     */
     @ExceptionHandler(value = ApiErrorInfoException.class)
     @ResponseBody
     public ResultBody errorHandlerOverJson(ApiErrorInfoException exception, HttpServletResponse response) {
@@ -42,9 +57,14 @@ public class GlobalExceptionHandler {
         return resultBody;
     }
 
+    /**
+     * 切 GlobalErrorInfoException 异常
+     * @param exception ApiErrorInfoException
+     * @param request HttpServletRequest
+     * @return ResultBody
+     */
     @ExceptionHandler(value = GlobalErrorInfoException.class)
-    public ResultBody errorHandlerOverJson(HttpServletRequest request,
-                                           GlobalErrorInfoException exception) {
+    public ResultBody errorHandlerOverJson(HttpServletRequest request, GlobalErrorInfoException exception) {
         ErrorInfoInterface errorInfo = exception.getErrorInfo();
         ResultBody result = new ResultBody(errorInfo);
         return result;

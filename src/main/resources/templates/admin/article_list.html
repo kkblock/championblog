@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='文章管理',active='article'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
 <body class="fixed-left">
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
@@ -65,10 +66,11 @@
     </div>
 </div>
 <div th:replace="admin/footer :: footer"></div>
+<script type="application/javascript" th:href="@{/public/js/championblog.js}"></script>
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = $('#contextPath').attr('href');
     function delPost(cid) {
         tale.alertConfirm({
             title:'确定删除该文章吗?',
@@ -88,12 +90,6 @@
         });
     }
     /*]]>*/
-    function getContextPath() {
-        var pathName = document.location.pathname;
-        var index = pathName.substr(1).indexOf("/");
-        var result = pathName.substr(0,index+1);
-        return result;
-    }
 </script>
 </body>
 </html>

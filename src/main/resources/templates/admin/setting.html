@@ -139,13 +139,8 @@
 </div>
 <div th:replace="admin/footer :: footer"></div>
 <script src="//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js"></script>
+<script type="application/javascript" th:href="@{/public/js/championblog.js}"></script>
 <script type="text/javascript">
-    function getContextPath() {
-        var pathName = document.location.pathname;
-        var index = pathName.substr(1).indexOf("/");
-        var result = pathName.substr(0,index+1);
-        return result;
-    }
     /*<![CDATA[*/
     var tale = new $.tale();
     var ctxPath = getContextPath();

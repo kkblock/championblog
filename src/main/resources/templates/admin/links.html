@@ -91,6 +91,7 @@
 <div th:replace="admin/footer :: footer"></div>
 <script src="//cdn.bootcss.com/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-validate/1.15.1/localization/messages_zh.min.js"></script>
+<script type="application/javascript" th:href="@{/public/js/championblog.js}"></script>
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
@@ -149,12 +150,6 @@
         });
     }
     /*]]>*/
-    function getContextPath() {
-        var pathName = document.location.pathname;
-        var index = pathName.substr(1).indexOf("/");
-        var result = pathName.substr(0,index+1);
-        return result;
-    }
 </script>
 </body>
 </html>
