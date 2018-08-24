@@ -20,11 +20,11 @@
                             <div class="post-list-item-container ">
                                 <div class="item-label ">
                                     <div class="item-title">
-                                        <a th:href="${commons.permalink(article)}" th:text="${article.title}"></a>
+                                        <a th:href="${#request.getContextPath() + commons.permalink(article)}" th:text="${article.title}"></a>
                                     </div>
                                     <div class="item-meta clearfix">
                                         <div th:class="'item-meta-ico '+${commons.show_icon(article.cid)} "
-                                             th:style="'background: url('+@{/user/img/bg-ico.png}+') no-repeat;background-size: 40px auto;'"></div>
+                                             th:style="'background: url('+@{${#request.getContextPath()} + /user/img/bg-ico.png}+') no-repeat;background-size: 40px auto;'"></div>
                                         <div class="item-meta-date">发布于 <th:block th:text="${commons.fmtdate(article.created)}"/></div>
                                     </div>
                                 </div>

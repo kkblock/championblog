@@ -36,9 +36,22 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController{
 
+    /**
+     * 首页跳转
+     * @return index.html
+     */
     @RequestMapping("/index")
     public String indexHtml(){
         return "index";
+    }
+
+    /**
+     * 测试页面跳转
+     * @return test.html
+     */
+    @RequestMapping("/test")
+    public String testHtml() {
+        return "test";
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);

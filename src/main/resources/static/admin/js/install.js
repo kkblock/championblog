@@ -4,7 +4,7 @@
 !function ($) {
     "use strict";
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = /championblog;
     var FormWizard = function () {
     };
     //creates form with validation
@@ -87,10 +87,3 @@
         //init
         $.FormWizard = new FormWizard, $.FormWizard.Constructor = FormWizard
 }(window.jQuery), $.FormWizard.init();
-
-function getContextPath() {
-    var pathName = document.location.pathname;
-    var index = pathName.substr(1).indexOf("/");
-    var result = pathName.substr(0,index+1);
-    return result;
-}

@@ -5,7 +5,7 @@
 <article class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
     <div class="post-header">
         <h1 class="post-title" itemprop="name headline">
-            <a th:href="${commons.permalink(article)}" th:text="${article.title}" data-no-instant=""></a>
+            <a th:href="${#request.getContextPath() + commons.permalink(article)}" th:text="${article.title}" data-no-instant=""></a>
         </h1>
         <div class="post-data">
             <time th:datetime="${commons.fmtdate(article.created)}" itemprop="datePublished" th:text="'发布于 '+ ${commons.fmtdate(article.created)}"></time>

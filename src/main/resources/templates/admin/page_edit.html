@@ -4,6 +4,7 @@
 <link th:href="@{/admin/plugins/toggles/toggles.css}" rel="stylesheet"/>
 <link th:href="@{/admin/plugins/md/css/style.css}" rel="stylesheet"/>
 <body class="fixed-left">
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
@@ -64,11 +65,10 @@
 <script th:src="@{//cdn.bootcss.com/jquery-toggles/2.0.4/toggles.min.js}"></script>
 <script th:src="@{//cdn.bootcss.com/jquery-validate/1.15.1/jquery.validate.min.js}"></script>
 <script th:src="@{//cdn.bootcss.com/jquery-validate/1.15.1/localization/messages_zh.min.js}"></script>
-<script type="application/javascript" th:href="@{/public/js/championblog.js}"></script>
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = $('#contextPath').attr('href');
     // validate the comment form when it is submitted
     $('#articleForm').validate({
         submitHandler: function (form) {

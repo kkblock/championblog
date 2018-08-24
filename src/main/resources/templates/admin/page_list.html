@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='页面管理',active='page'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
 <body class="fixed-left">
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
@@ -57,11 +58,10 @@
     </div>
 </div>
 <div th:replace="admin/footer :: footer"></div>
-<script type="application/javascript" th:href="@{/public/js/championblog.js}"></script>
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = $('#contextPath').attr('href');
     function delPost(cid) {
         tale.alertConfirm({
             title:'确定删除这个页面吗?',

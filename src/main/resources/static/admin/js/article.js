@@ -21,7 +21,7 @@ $(".select2").select2({
 });
 
 var tale = new $.tale();
-var ctxPath = getContextPath();
+var ctxPath = /championblog
 
 /**
  * 保存文章

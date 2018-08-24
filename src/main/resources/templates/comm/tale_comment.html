@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="tale_comment">
 <body>
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <script type="text/javascript">
     /*<![CDATA[*/
+    var ctxPath = $('#contextPath').attr('href');
     (function () {
         window.TaleComment = {
             dom: function (id) {
@@ -23,7 +25,7 @@
             subComment: function () {
                 $.ajax({
                     type: 'post',
-                    url: '/comment',
+                    url: ctxPath + '/comment',
                     data: $('#comment-form').serialize(),
                     async: false,
                     dataType: 'json',
