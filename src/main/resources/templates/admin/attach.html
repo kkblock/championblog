@@ -41,6 +41,7 @@
     }
 </style>
 <body class="fixed-left">
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
@@ -117,7 +118,7 @@
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = $('#contextPath').attr('href');
     $("#dropzone").dropzone({
         paramName: "file",
         url: ctxPath + "/admin/attach/upload",

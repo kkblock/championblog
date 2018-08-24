@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='友链管理',active='links'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
 <body class="fixed-left">
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
@@ -95,7 +96,7 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = $('#contextPath').attr('href');
     $('#linkForm').validate({
         submitHandler: function (form) {
             var params = $("#linkForm").serialize();
@@ -117,7 +118,6 @@
 
     function editLink(obj) {
         var this_ = $(obj);
-
         var mid = this_.parents('tr').attr('mid');
         var title = this_.parents('tr').find('td:eq(0)').text();
         var url = this_.parents('tr').find('td:eq(1)').text();

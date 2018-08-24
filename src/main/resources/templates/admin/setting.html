@@ -3,6 +3,7 @@
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
 <link th:href="@{/admin/plugins/toggles/toggles.css}" rel="stylesheet"/>
 <body class="fixed-left">
+<a th:href="${#request.getContextPath()}" id="contextPath"></a>
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
@@ -143,7 +144,7 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-    var ctxPath = getContextPath();
+    var ctxPath = $('#contextPath').attr('href');
     /**
      * 保存全局设置
      */
