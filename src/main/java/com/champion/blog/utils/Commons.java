@@ -2,9 +2,11 @@ package com.champion.blog.utils;
 
 import com.champion.blog.constant.WebConst;
 import com.champion.blog.model.vo.ContentVo;
+import com.champion.blog.properties.Env;
 import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -200,16 +202,16 @@ public final class Commons {
      * @param categories categories
      * @return 显示分类
      */
-    public static String show_categories(String categories) throws UnsupportedEncodingException {
+    public static String show_categories(String contextPath,String categories) throws UnsupportedEncodingException {
         if (StringUtils.isNotBlank(categories)) {
             String[] arr = categories.split(",");
             StringBuffer sbuf = new StringBuffer();
             for (String c : arr) {
-                sbuf.append("<a href=\"/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+                sbuf.append("<a href=\"" + contextPath + "/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
             }
             return sbuf.toString();
         }
-        return show_categories("默认分类");
+        return show_categories(contextPath,"默认分类");
     }
 
     /**
@@ -218,12 +220,12 @@ public final class Commons {
      * @param tags tags
      * @return 显示标签
      */
-    public static String show_tags(String tags) throws UnsupportedEncodingException {
+    public static String show_tags(String contextPath,String tags) throws UnsupportedEncodingException {
         if (StringUtils.isNotBlank(tags)) {
             String[] arr = tags.split(",");
             StringBuffer sbuf = new StringBuffer();
             for (String c : arr) {
-                sbuf.append("<a href=\"/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+                sbuf.append("<a href=\"" + contextPath + "/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
             }
             return sbuf.toString();
         }
