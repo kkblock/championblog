@@ -149,7 +149,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
-            <form class="form-horizontal" method="post" id="loginForm" onsubmit="return checkForm()">
+            <form class="form-horizontal" method="post" id="loginForm" onsubmit="return checkForm();">
                 <span class="heading">登录</span>
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" id="inputEmail3" placeholder="用户名或电子邮件">
@@ -186,9 +186,8 @@
             data: $("#loginForm").serialize(),
             success: function (result) {
                 if (result && result.success) {
-                    console.log("请求成功," + result.success);
-                    window.event.returnValue=false;
                     window.location.href = ctxPath + '/admin/index';
+                    window.event.returnValue=false;
                 } else {
                     console.log("请求失败");
                     tale.alertError(result.msg || '登录失败');

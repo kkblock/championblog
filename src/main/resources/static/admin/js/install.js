@@ -4,7 +4,7 @@
 !function ($) {
     "use strict";
     var tale = new $.tale();
-    var ctxPath = /championblog;
+    var ctxPath = '/championblog';
     var FormWizard = function () {
     };
     //creates form with validation

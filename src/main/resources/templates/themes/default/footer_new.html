@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="footer">
+<body>
+<div class="ui vertical footer segment">
+    <div class="ui container">
+        <div class="ui stackable divided equal height stackable grid">
+            <div class="three wide column">
+                <h4 class="ui header">About</h4>
+                <div class="ui link list">
+                    <th:block th:each="index:${commons.social()}">
+                        <th:block th:if="${index.value}!=null and ${index.value}!=''">
+                            <th:block th:switch="${index.key}">
+                                <th:block th:case="'weibo'">
+                                    <a class="item" target="blank"
+                                       th:href="@{${index.value}}">微博</a>
+                                </th:block>
+                                <th:block th:case="'zhihu'">
+                                    <a class="item" target="blank"
+                                       th:href="@{${index.value}}">知乎</a>
+                                </th:block>
+                                <th:block th:case="'github'">
+                                    <a class="item" target="blank"
+                                       th:href="@{${index.value}}">Github</a>
+                                </th:block>
+                                <th:block th:case="'twitter'">
+                                    <a class="item" target="blank"
+                                       th:href="@{${index.value}}">Twitter</a>
+                                </th:block>
+                            </th:block>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui header">Services</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">Banana Pre-Order</a>
+                    <a href="#" class="item">DNA FAQ</a>
+                    <a href="#" class="item">How To Access</a>
+                    <a href="#" class="item">Favorite X-Men</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui header">Footer Header</h4>
+                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

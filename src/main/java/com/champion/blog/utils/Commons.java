@@ -2,16 +2,19 @@ package com.champion.blog.utils;
 
 import com.champion.blog.constant.WebConst;
 import com.champion.blog.model.vo.ContentVo;
-import com.champion.blog.properties.Env;
+import com.champion.blog.model.vo.OptionVo;
+import com.champion.blog.service.OptionService;
 import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,6 +24,22 @@ import java.util.regex.Pattern;
  */
 @Component
 public final class Commons {
+
+    @Resource
+    private OptionService optionService;
+
+    /**
+     * 初始化必要信息
+     */
+    @PostConstruct
+    private void initialize(){
+        List<OptionVo> voList = optionService.getOptions();
+        Map<String, String> options = new HashMap<>();
+        voList.forEach((option) -> {
+            options.put(option.getName(), option.getValue());
+        });
+        WebConst.initConfig = options;
+    }
 
     public static String THEME = "themes/default";
 
