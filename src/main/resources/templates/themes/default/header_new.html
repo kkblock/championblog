@@ -31,16 +31,13 @@
 <!--<header id="header" class="header bg-white">-->
     <!--aaa-->
 <!--</header>-->
-<div class="ui attached stackable menu">
+<div class="ui attached stackable menu borderless">
     <div class="ui container">
-        <a class="item">
+        <a class="item" th:href="${#request.getContextPath() + commons.site_url()}">
             <i class="home icon"></i> 主页
         </a>
         <a class="item">
             <i class="grid layout icon"></i> 浏览
-        </a>
-        <a class="item">
-            <i class="mail icon"></i> 致信
         </a>
         <div class="ui simple dropdown item">
             归档
@@ -50,6 +47,9 @@
                 <a class="item"><i class="list icon"></i> 类别</a>
             </div>
         </div>
+        <a class="item">
+            <i class="mail icon"></i> 致信
+        </a>
         <a class="item" th:href="${#request.getContextPath() + commons.site_url('/links')}">
             <i class="linkedin icon"></i> 友链
         </a>

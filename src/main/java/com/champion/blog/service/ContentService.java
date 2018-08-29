@@ -3,7 +3,6 @@ package com.champion.blog.service;
 import com.champion.blog.model.vo.ContentVo;
 import com.champion.blog.model.vo.ContentVoExample;
 import com.github.pagehelper.PageInfo;
-import org.springframework.data.domain.Page;
 
 public interface ContentService {
 
