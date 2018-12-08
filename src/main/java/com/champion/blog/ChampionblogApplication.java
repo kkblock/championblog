@@ -28,7 +28,7 @@ import javax.sql.DataSource;
 })
 @MapperScan(value = "com.champion.blog.dao")
 @ImportResource(locations = {"classpath:/applicationContext.xml"})
-@PropertySource(value = "classpath:/env.properties")
+@PropertySource(value = {"classpath:/env.properties","classpath:/db.properties"})
 @EnableScheduling
 @EnableCaching
 @EnableTransactionManagement

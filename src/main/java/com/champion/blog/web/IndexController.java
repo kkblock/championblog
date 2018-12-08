@@ -45,15 +45,6 @@ public class IndexController extends BaseController{
         return "index";
     }
 
-    /**
-     * 测试页面跳转
-     * @return test.html
-     */
-    @RequestMapping("/test")
-    public String testHtml() {
-        return "test";
-    }
-
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @Resource
@@ -86,7 +77,7 @@ public class IndexController extends BaseController{
      * @return 主页
      */
     @GetMapping(value = "page/{p}")
-    public String index(HttpServletRequest request, @PathVariable int p, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String index(HttpServletRequest request, @PathVariable int p, @RequestParam(value = "limit", defaultValue = "10") int limit) {
         p = p < 0 || p > WebConst.MAX_PAGE ? 1 : p;
         PageInfo<ContentVo> articles = contentService.getContents(p, limit);
         request.setAttribute("articles", articles);

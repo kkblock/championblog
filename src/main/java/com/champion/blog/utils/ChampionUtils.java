@@ -160,6 +160,7 @@ public class ChampionUtils {
                     String uid = Tools.deAes(cookie.getValue(), WebConst.AES_SALT);
                     return StringUtils.isNotBlank(uid) && Tools.isNumber(uid) ? Integer.valueOf(uid) : null;
                 } catch (Exception e) {
+                    return null;
                 }
             }
         }
@@ -174,11 +175,11 @@ public class ChampionUtils {
      * @return cookie
      */
     private static Cookie cookieRaw(String name, HttpServletRequest request) {
-        javax.servlet.http.Cookie[] servletCookies = request.getCookies();
+        Cookie[] servletCookies = request.getCookies();
         if (servletCookies == null) {
             return null;
         }
-        for (javax.servlet.http.Cookie c : servletCookies) {
+        for (Cookie c : servletCookies) {
             if (c.getName().equals(name)) {
                 return c;
             }

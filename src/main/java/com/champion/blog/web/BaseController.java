@@ -17,9 +17,10 @@ public abstract class BaseController {
     protected static String THEME = "themes/default";
 
     // 初始化Ehcache对象
-    protected  CacheManager cacheManager = new EhcacheUtils().getInstance();
+//    protected  CacheManager cacheManager = new EhcacheUtils().getInstance();
     // 获取初始化的缓存对象
 //    protected  Cache<String, String> mineCache = cacheManager.getCache("defaultCache", String.class, String.class);
+
     protected MapCache cache = MapCache.single();
     /**
      * 主页的页面主题

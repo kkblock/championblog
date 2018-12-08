@@ -69,6 +69,13 @@ public class Tools {
         return new BASE64Encoder().encode(encryptedBytes);
     }
 
+    /**
+     * 利用秘钥解密指定字符串
+     * @param data 待解密数据
+     * @param key 秘钥
+     * @return Aes解密后的字符串
+     * @throws Exception exception
+     */
     public static String deAes(String data, String key) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
