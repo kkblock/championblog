@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class BaseController {
 
-    protected static String THEME = "themes/default";
+//    protected static String THEME = "themes/default";
+      protected static String THEME = "themes/semantic";
 
     // 初始化Ehcache对象
 //    protected  CacheManager cacheManager = new EhcacheUtils().getInstance();
