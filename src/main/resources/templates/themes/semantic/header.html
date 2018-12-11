@@ -6,11 +6,11 @@
     <title><th:block th:text="${title ?: '首页'}+' - '+${commons.site_option('site_title','Champion Blog')}"/></title>
 
     <link rel="shortcut icon" th:href="@{/semantic/public/images/logo.png}" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/semantic/public/css/semantic.min.css}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/semantic/public/css/style.css}"/>
 
-    <script type="application/javascript" th:src="@{/semantic/public/js/jquery.min.js}"></script>
-    <script type="application/javascript" th:src="@{/semantic/public/js/semantic.min.js}"></script>
+    <script type="application/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script type="application/javascript" th:src="@{/semantic/public/js/champion.js}"></script>
     <script type="application/javascript" th:src="@{/semantic/public/js/main.js}"></script>
 
