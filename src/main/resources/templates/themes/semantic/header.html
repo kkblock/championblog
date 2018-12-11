@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="header(title,keywords)">
+<!--/*@thymesVar id="commons" type="com.champion.blog.utils.Commons"*/-->
+<head>
+    <meta charset="UTF-8">
+    <title><th:block th:text="${title ?: '首页'}+' - '+${commons.site_option('site_title','Champion Blog')}"/></title>
+
+    <link rel="shortcut icon" th:href="@{/semantic/public/images/logo.png}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/semantic/public/css/semantic.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/semantic/public/css/style.css}"/>
+
+    <script type="application/javascript" th:src="@{/semantic/public/js/jquery.min.js}"></script>
+    <script type="application/javascript" th:src="@{/semantic/public/js/semantic.min.js}"></script>
+    <script type="application/javascript" th:src="@{/semantic/public/js/champion.js}"></script>
+    <script type="application/javascript" th:src="@{/semantic/public/js/main.js}"></script>
+
+    <!--to menu js-->
+    <script type="application/javascript" th:src="@{/semantic/public/js/topmain.js}"></script>
+    <script type="application/javascript" th:src="@{/semantic/public/js/modernizr.js}"></script>
+</head>
+<body>
+<!-- Top Menu -->
+<header class="ui stackable main menu top borderless large">
+    <div class="ui container">
+        <div class="item" th:href="${#request.getContextPath() + commons.site_url()}">
+            <img th:src="@{/semantic/public/images/logo.png}" alt="主页">
+        </div>
+        <div class="right menu">
+            <div class="ui simple dropdown item">
+                归档
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" th:href="${#request.getContextPath() + commons.site_url('/archives')}"><i
+                            class="calendar times outline icon"></i> 时间 </a>
+                    <a class="item"><i class="list icon"></i> 类别</a>
+                </div>
+            </div>
+            <a class="item">
+                <i class="mail icon"></i> 致信
+            </a>
+            <a class="item" th:href="${#request.getContextPath() + commons.site_url('/links')}">
+                <i class="linkify icon"></i> 友链
+            </a>
+            <a class="item" th:href="${#request.getContextPath() + commons.site_url('/about')}">
+                <i class="book icon"></i> 关于
+            </a>
+        </div>
+    </div>
+</header>
+</body>
+</html>

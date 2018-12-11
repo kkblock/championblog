@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="themes/semantic/header::header(null,null)"></div>
+<!--/*@thymesVar id="commons" type="com.champion.blog.utils.Commons"*/-->
+<body>
+<!-- middle container -->
+<div class="ui main container">
+    <h1 class="ui header aligned center">Welcome to Champion Blog</h1>
+
+    <!--video-->
+    <div class="ui text container video">
+        <div class="ui embed headvideo" data-icon="right circle arrow"
+             th:attr="data-url=${#servletContext.contextPath + '/semantic/public/video/1.mp4'},
+             data-placeholder=${#servletContext.contextPath + '/semantic/public/images/vimeo-example.jpg'}"
+        ></div>
+    </div>
+
+    <div class="ui inverted section divider"></div>
+
+    <!--search-->
+    <div class="ui fluid container">
+        <div class="ui action left icon input" id="middleSearch">
+            <i class="search icon"></i>
+            <input type="text" placeholder="输入关键字...">
+            <div class="ui teal button">搜索文章</div>
+        </div>
+    </div>
+
+    <!--articles-->
+    <div class="ui container">
+
+        <!--articles items-->
+        <div class="ui divided items" th:each="article: ${articles.list}">
+            <div class="item card">
+                <div class="image">
+                    <div class="ui blurring inverted dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <!--填充文章类别标志-->
+                                <div class="ui teal button" th:text="${article.categories}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <img th:src="@{'/semantic/public/images/' + ${article.categories} + '.png'}">
+                </div>
+                <div class="content">
+                    <a class="ui middle header" th:text="${article.title}"></a>
+                    <div class="description">
+                        <p th:text="${commons.intro(article.content,100)}"></p>
+                    </div>
+                    <div class="ui labels extra">
+                        <div class="ui label" th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"></div>
+                        <a th:href="${#request.getContextPath() + commons.permalink(article)}"><div class="ui right floated primary button">进入阅读<<i class="right chevron icon"></i></div></a>
+                    </div>
+                    <div class="meta">
+                        <span class="cinema">邝凯</span>
+                        <span class="cinema" th:text="${#dates.format(new java.util.Date(article.created),'yyyy年MM月dd日 HH:mm')}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--pageinfo-->
+        <div class="ui text container pageinfo">
+            <div class="ui right pagination menu borderless segment">
+                <a class="icon link item disabled">
+                    <i class="arrow left icon"></i> &nbsp;上一页
+                </a>
+                <a class="icon link item active blue">1</a>
+                <a class="icon link item">2</a>
+                <a class="icon link item">3</a>
+                <a class="icon link item">4</a>
+                <a class="icon link item">5</a>
+                <a class="icon link item">6</a>
+                <a class="item">
+                    下一页 &nbsp;<i class="arrow right icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<a href="#" class="cd-top">Top</a>
+</body>
+<div th:replace="themes/semantic/footer::footer"></div>
+</html>
