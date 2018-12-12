@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">
-    <th:block th:if="${pageInfo.hasPreviousPage}">
-        <li class="prev"><a th:href="@{'/'+${prefix}+'/'+${pageInfo.prePage}}" th:text="${prevText}"></a></li>
-    </th:block>
+<div th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">
+    <div class="ui container pageinfo">
+        <div class="ui pagination menu borderless segment">
+            <!--上一页-->
+            <a th:class="${pageInfo.hasPreviousPage} ?'icon link item':'icon link item disabled'"
+               th:href="@{'/'+${prefix}+'/'+${pageInfo.prePage}}">
+                <i class="arrow left icon"></i> &nbsp;上一页
+            </a>
+
+            <!--content-->
+            <th:block th:each="navIndex :${ pageInfo.navigatepageNums}">
+                <a th:class="${pageInfo.pageNum==navIndex} ? 'icon link item active blue':'icon link item'"
+                   th:href="@{'/page/'+${navIndex}}" th:text="${navIndex}"></a>
+            </th:block>
+
+            <!--下一页-->
+            <a th:class="${pageInfo.hasNextPage ? 'icon link item': 'icon link item disabled'}" th:href="@{'/'+${prefix}+'/'+${pageInfo.nextPage}}">
+                下一页 &nbsp;<i class="arrow right icon"></i>
+            </a>
+
+        </div>
+    </div>
+</div>
+<!--<ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">-->
+<!--<th:block th:if="${pageInfo.hasPreviousPage}">-->
+<!--<li class="prev"><a th:href="@{'/'+${prefix}+'/'+${pageInfo.prePage}}" th:text="${prevText}"></a></li>-->
+<!--</th:block>-->
 
 
-    <th:block th:each="navIndex :${ pageInfo.navigatepageNums}">
-        <li th:class="${pageInfo.pageNum==navIndex}?'current':''"><a th:href="@{'/page/'+${navIndex}}"
-                                                                     th:text="${navIndex}"></a></li>
-    </th:block>
+<!--<th:block th:each="navIndex :${ pageInfo.navigatepageNums}">-->
+<!--<li th:class="${pageInfo.pageNum==navIndex}?'current':''"><a th:href="@{'/page/'+${navIndex}}"-->
+<!--th:text="${navIndex}"></a></li>-->
+<!--</th:block>-->
 
 
-    <th:block th:if="${pageInfo.hasNextPage}">
-        <li class="next"><a th:href="@{'/'+${prefix}+'/'+${pageInfo.nextPage}}" th:text="${nextText}"></a></li>
-    </th:block>
+<!--<th:block th:if="${pageInfo.hasNextPage}">-->
+<!--<li class="next"><a th:href="@{'/'+${prefix}+'/'+${pageInfo.nextPage}}" th:text="${nextText}"></a></li>-->
+<!--</th:block>-->
 
-</ol>
+<!--</ol>-->
 
 <div th:fragment="pageAdminNav(pageInfo)">
     <div class="clearfix">
@@ -29,7 +52,8 @@
             </li>
 
             <th:block th:each="nav : ${pageInfo.navigatepageNums}">
-                <li th:class="${nav==pageInfo.pageNum}?'active':''"><a th:href="@{'?page='+${nav}}" th:text="${nav}"></a>
+                <li th:class="${nav==pageInfo.pageNum}?'active':''"><a th:href="@{'?page='+${nav}}"
+                                                                       th:text="${nav}"></a>
                 </li>
             </th:block>
 
