@@ -128,16 +128,16 @@
     }
 
 
-    var header = new Headroom(document.getElementById("header"), {
-        tolerance: 10,
-        offset: 80,
-        classes: {
-            initial: "animated",
-            pinned: "slideDown",
-            unpinned: "slideUp"
-        }
-    });
-    header.init();
+    // var header = new Headroom(document.getElementById("header"), {
+    //     tolerance: 10,
+    //     offset: 80,
+    //     classes: {
+    //         initial: "animated",
+    //         pinned: "slideDown",
+    //         unpinned: "slideUp"
+    //     }
+    // });
+    // header.init();
     $('#search-inp').keypress(function (e) {
         var key = e.which; //e.which是按键的值
         if (key == 13) {

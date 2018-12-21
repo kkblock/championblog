@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="themes/semantic/header::header(${article.title},${article.tags})"></div>
+<!--/*@thymesVar id="commons" type="com.champion.blog.utils.Commons"*/-->
 <body>
 <article class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
     <div class="post-header">
@@ -18,7 +19,7 @@
         <th:block th:utext="${commons.article(article.content)}"/>
         <p class="post-info">
             本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名,转载请标明出处<br/>最后编辑时间为:
-            <th:block th:text="${commons.fmtdate(article.modified, 'yyyy/MM/dd HH:mm')}"/>
+            <th:block th:text="${commons.fmtdate(article.modified, 'yyyy年MM月dd日 HH:mm')}"/>
         </p>
     </div>
 </article>
