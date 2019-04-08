@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">
-    <div class="ui container pageinfo">
+<div th:fragment="pageNav(pageInfo, prevText, nextText, prefix)" class="ui container pageinfo">
         <div class="ui pagination menu borderless segment">
             <!--上一页-->
             <a th:class="${pageInfo.hasPreviousPage} ?'icon link item':'icon link item disabled'"
@@ -22,7 +21,6 @@
             </a>
 
         </div>
-    </div>
 </div>
 <!--<ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">-->
 <!--<th:block th:if="${pageInfo.hasPreviousPage}">-->

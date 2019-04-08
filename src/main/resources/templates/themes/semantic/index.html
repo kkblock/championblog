@@ -18,7 +18,7 @@
     <div class="ui inverted section divider"></div>
 
     <!--search-->
-    <div class="ui fluid container">
+    <div class="ui text container">
         <div class="ui action left icon input" id="middleSearch">
             <i class="search icon"></i>
             <input type="text" placeholder="输入关键字...">
@@ -27,7 +27,7 @@
     </div>
 
     <!--articles-->
-    <div class="ui container">
+    <div class="ui text container">
 
         <!--articles items-->
         <div class="ui divided items" th:each="article: ${articles.list}">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="ui labels teal small extra">
                         <div class="ui label" th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"></div>
-                        <a th:href="${#request.getContextPath() + commons.permalink(article)}"><div class="ui right floated primary button">进入阅读<<i class="right chevron icon"></i></div></a>
+                        <a th:href="${#request.getContextPath() + commons.permalink(article)}"><div class="ui right floated primary button">进入阅读<i class="right chevron icon"></i></div></a>
                     </div>
                     <div class="meta">
                         <span class="cinema">邝凯</span>
@@ -58,6 +58,7 @@
                     </div>
                 </div>
             </div>
+            <div class="ui inverted section divider"></div>
         </div>
 
         <div th:replace="comm/macros::pageNav(${articles},'←','→','page')"></div>
