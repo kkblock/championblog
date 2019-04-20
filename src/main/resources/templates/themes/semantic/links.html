@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="themes/semantic/header::header(null,null)"></div>
+<body>
+
+    <section class="section">
+        <div class="ui main container">
+            <!--友情链接部分-->
+            <div class="ui raised segment friedlink">
+                <div class="ui header" style="margin-bottom: 1em">
+                    <i class="linkify icon"></i>
+                    <h4 class="content">友情链接</h4>
+                </div>
+                <div class="ui six column equal width stackable grid container padded divided" style="padding-left: 2em;padding-bottom: 1em">
+                    <div class="row">
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                        <div class="column">
+                            <i class="globe icon"></i>
+                            <a href="#">测试链接地址</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--链接需知部分-->
+            <div class="ui raised segment linkknow">
+                <div class="ui header" style="margin-bottom: 1em;">
+                    <i class="linkify icon"></i>
+                    <h4 class="content">链接需知</h4>
+                </div>
+                <div class="ui bulleted relaxed list" style="margin: 2em 0 2em 4em;">
+                    <div class="item">
+                        <p>
+                            请确定贵站可以稳定运营
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>
+                            原创博客优先，技术类博客优先，设计、视觉类博客优先
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>
+                            经常过来访问和评论，眼熟的
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--基本信息-->
+            <div class="ui raised segment basicinfo">
+                <div class="ui header" style="margin-bottom: 1em;">
+                    <i class="linkify icon"></i>
+                    <h4 class="content">基本信息</h4>
+                </div>
+                <div class="ui list bulleted relaxed" style="margin: 2em 0 2em 4em;">
+                    <div class="item">
+                        <p>网站名称: Champion Blog</p>
+                        <p>网站地址: http://www.championblog.com</p>
+                        <p>我的邮箱: kuangkai_jy@163.com</p>
+                        <p>我的微信: sishui0127(二维码见最下面)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+<div th:replace="themes/semantic/footer::footer"></div>
+</html>

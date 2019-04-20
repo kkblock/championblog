@@ -75,7 +75,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_options
+        from c_options
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -94,27 +94,27 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_options
+        from c_options
         where name = #{name,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        DELETE FROM t_options
+        DELETE FROM c_options
         WHERE name = #{name,jdbcType=VARCHAR}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.OptionVoExample">
-        delete from t_options
+        delete from c_options
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.OptionVo">
-        INSERT INTO t_options (name, value, description
+        INSERT INTO c_options (name, value, description
         )
         VALUES (#{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.OptionVo">
-        insert into t_options
+        insert into c_options
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">
                 name,
@@ -139,13 +139,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.OptionVoExample" resultType="java.lang.Long">
-        select count(*) from t_options
+        select count(*) from c_options
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_options
+        update c_options
         <set>
             <if test="record.name != null">
                 name = #{record.name,jdbcType=VARCHAR},
@@ -162,7 +162,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_options
+        update c_options
         set name = #{record.name,jdbcType=VARCHAR},
         value = #{record.value,jdbcType=VARCHAR},
         description = #{record.description,jdbcType=VARCHAR}
@@ -171,7 +171,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.champion.blog.model.vo.OptionVo">
-        update t_options
+        update c_options
         <set>
             <if test="value != null">
                 value = #{value,jdbcType=VARCHAR},
@@ -183,7 +183,7 @@
         where name = #{name,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.champion.blog.model.vo.OptionVo">
-        UPDATE t_options
+        UPDATE c_options
         SET value       = #{value,jdbcType=VARCHAR},
             description = #{description,jdbcType=VARCHAR}
         WHERE name = #{name,jdbcType=VARCHAR}
@@ -191,7 +191,7 @@
 
     <!--批量保存-->
     <insert id="insertOptions" parameterType="com.champion.blog.model.vo.OptionVo">
-        INSERT INTO t_options(name, value, description) VALUES
+        INSERT INTO c_options(name, value, description) VALUES
         <if test="list.size!=0">
             <foreach collection="list" item="option" separator=",">
                 ( #{option.name},#{option.value},#{option.description})

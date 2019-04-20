@@ -13,6 +13,7 @@
             <th:block th:text="${article.hits}"/>浏览
         </div>
     </div>
+    <!--文章主体-->
     <div id="post-content" class="post-content" itemprop="articleBody">
         <p class="post-tags" th:utext="${commons.show_tags(#request.getContextPath(),article.tags)}"></p>
         <th:block th:utext="${commons.article(article.content)}"/>

@@ -103,4 +103,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 查询所有用户信息
+     * @return　List<UserVo>
+     */
+    @Override
+    public List<UserVo> findAll() {
+        List<UserVo> userVos = userDao.selectByExample(null);
+        return userVos;
+    }
+
 }

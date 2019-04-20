@@ -97,7 +97,7 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from t_contents
+        from c_contents
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -111,7 +111,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_contents
+        from c_contents
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -132,21 +132,21 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from t_contents
+        from c_contents
         where cid = #{cid,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM t_contents
+        DELETE FROM c_contents
         WHERE cid = #{cid,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.ContentVoExample">
-        delete from t_contents
+        delete from c_contents
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.ContentVo" useGeneratedKeys="true" keyProperty="cid">
-        INSERT INTO t_contents (cid, title, slug,
+        INSERT INTO c_contents (cid, title, slug,
                                 created, modified, author_id,
                                 type, status, tags,
                                 categories, hits, comments_num,
@@ -163,7 +163,7 @@
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.ContentVo" useGeneratedKeys="true"
             keyProperty="cid">
-        insert into t_contents
+        insert into c_contents
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cid != null">
                 cid,
@@ -266,13 +266,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.ContentVoExample" resultType="java.lang.Long">
-        select count(*) from t_contents
+        select count(*) from c_contents
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_contents
+        update c_contents
         <set>
             <if test="record.cid != null">
                 cid = #{record.cid,jdbcType=INTEGER},
@@ -328,7 +328,7 @@
         </if>
     </update>
     <update id="updateByExampleWithBLOBs" parameterType="map">
-        update t_contents
+        update c_contents
         set cid = #{record.cid,jdbcType=INTEGER},
         title = #{record.title,jdbcType=VARCHAR},
         slug = #{record.slug,jdbcType=VARCHAR},
@@ -350,7 +350,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_contents
+        update c_contents
         set cid = #{record.cid,jdbcType=INTEGER},
         title = #{record.title,jdbcType=VARCHAR},
         slug = #{record.slug,jdbcType=VARCHAR},
@@ -371,7 +371,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.champion.blog.model.vo.ContentVo">
-        update t_contents
+        update c_contents
         <set>
             <if test="title != null">
                 title = #{title,jdbcType=VARCHAR},
@@ -422,7 +422,7 @@
         where cid = #{cid,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.champion.blog.model.vo.ContentVo">
-        UPDATE t_contents
+        UPDATE c_contents
         SET title         = #{title,jdbcType=VARCHAR},
             slug          = #{slug,jdbcType=VARCHAR},
             created       = #{created,jdbcType=INTEGER},
@@ -441,7 +441,7 @@
         WHERE cid = #{cid,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.champion.blog.model.vo.ContentVo">
-        UPDATE t_contents
+        UPDATE c_contents
         SET title         = #{title,jdbcType=VARCHAR},
             slug          = #{slug,jdbcType=VARCHAR},
             created       = #{created,jdbcType=INTEGER},
@@ -469,7 +469,7 @@
         SELECT
             FROM_UNIXTIME(created, '%Y年%m月') AS date,
             count(*)                         AS count
-        FROM t_contents
+        FROM c_contents
         WHERE type = 'post' AND status = 'publish'
         GROUP BY date
         ORDER BY date DESC
@@ -478,7 +478,7 @@
 
     <select id="findByCatalog" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT a.*
-        FROM t_contents a LEFT JOIN t_relationships b ON a.cid = b.cid
+        FROM c_contents a LEFT JOIN t_relationships b ON a.cid = b.cid
         WHERE b.mid = #{value} AND a.status = 'publish' AND a.type = 'post'
         ORDER BY a.created DESC
     </select>

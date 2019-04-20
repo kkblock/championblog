@@ -84,7 +84,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_metas
+        from c_metas
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -103,21 +103,21 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_metas
+        from c_metas
         where mid = #{mid,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM t_metas
+        DELETE FROM c_metas
         WHERE mid = #{mid,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.MetaVoExample">
-        delete from t_metas
+        delete from c_metas
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.MetaVo" useGeneratedKeys="true" keyProperty="mid">
-        INSERT INTO t_metas (mid, name, slug,
+        INSERT INTO c_metas (mid, name, slug,
                              type, description, sort,
                              parent)
         VALUES (#{mid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{slug,jdbcType=VARCHAR},
@@ -126,7 +126,7 @@
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.MetaVo" useGeneratedKeys="true"
             keyProperty="mid">
-        insert into t_metas
+        insert into c_metas
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="mid != null">
                 mid,
@@ -175,13 +175,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.MetaVoExample" resultType="java.lang.Long">
-        select count(*) from t_metas
+        select count(*) from c_metas
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_metas
+        update c_metas
         <set>
             <if test="record.mid != null">
                 mid = #{record.mid,jdbcType=INTEGER},
@@ -210,7 +210,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_metas
+        update c_metas
         set mid = #{record.mid,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         slug = #{record.slug,jdbcType=VARCHAR},
@@ -223,7 +223,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.champion.blog.model.vo.MetaVo">
-        update t_metas
+        update c_metas
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
         where mid = #{mid,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.champion.blog.model.vo.MetaVo">
-        UPDATE t_metas
+        UPDATE c_metas
         SET name        = #{name,jdbcType=VARCHAR},
             slug        = #{slug,jdbcType=VARCHAR},
             type        = #{type,jdbcType=VARCHAR},
@@ -261,7 +261,7 @@
         SELECT
             a.*,
             count(b.cid) AS count
-        FROM t_metas a LEFT JOIN `t_relationships` b ON a.mid = b.mid
+        FROM c_metas a LEFT JOIN `t_relationships` b ON a.mid = b.mid
         WHERE a.type = #{type}
         GROUP BY a.mid
         ORDER BY #{order}
@@ -272,7 +272,7 @@
         SELECT
             a.*,
             count(b.cid) AS count
-        FROM t_metas a LEFT JOIN `t_relationships` b ON a.mid = b.mid
+        FROM c_metas a LEFT JOIN `t_relationships` b ON a.mid = b.mid
         WHERE a.type = #{type} AND a.name = #{name}
         GROUP BY a.mid
     </select>

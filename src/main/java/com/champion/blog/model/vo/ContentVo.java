@@ -40,7 +40,7 @@ public class ContentVo implements Serializable {
     /**
      * 内容类别
      */
-    private String type;
+    private String type;//post文章　　about关于
 
     /**
      * 内容状态

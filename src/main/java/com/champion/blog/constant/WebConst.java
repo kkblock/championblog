@@ -1,14 +1,19 @@
 package com.champion.blog.constant;
 
+import com.champion.blog.model.vo.UserVo;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
 public class WebConst {
 
     public static Map<String, String> initConfig = new HashMap<>();
+
+    public static List<UserVo> userAll = new ArrayList<>();
 
 
     public static String LOGIN_SESSION_KEY = "login_user";

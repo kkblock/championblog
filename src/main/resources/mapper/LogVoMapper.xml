@@ -78,7 +78,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_logs
+        from c_logs
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -97,21 +97,21 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_logs
+        from c_logs
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM t_logs
+        DELETE FROM c_logs
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.LogVoExample">
-        delete from t_logs
+        delete from c_logs
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.LogVo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_logs (id, action, data,
+        INSERT INTO c_logs (id, action, data,
                             author_id, ip, created
         )
         VALUES (#{id,jdbcType=INTEGER}, #{action,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR},
@@ -120,7 +120,7 @@
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.LogVo" useGeneratedKeys="true"
             keyProperty="id">
-        insert into t_logs
+        insert into c_logs
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -163,13 +163,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.LogVoExample" resultType="java.lang.Long">
-        select count(*) from t_logs
+        select count(*) from c_logs
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_logs
+        update c_logs
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -195,7 +195,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_logs
+        update c_logs
         set id = #{record.id,jdbcType=INTEGER},
         action = #{record.action,jdbcType=VARCHAR},
         data = #{record.data,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.champion.blog.model.vo.LogVo">
-        update t_logs
+        update c_logs
         <set>
             <if test="action != null">
                 action = #{action,jdbcType=VARCHAR},
@@ -228,7 +228,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.champion.blog.model.vo.LogVo">
-        UPDATE t_logs
+        UPDATE c_logs
         SET action    = #{action,jdbcType=VARCHAR},
             data      = #{data,jdbcType=VARCHAR},
             author_id = #{authorId,jdbcType=INTEGER},

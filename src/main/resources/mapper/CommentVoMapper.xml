@@ -94,7 +94,7 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from t_comments
+        from c_comments
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -108,7 +108,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_comments
+        from c_comments
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -129,21 +129,21 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from t_comments
+        from c_comments
         where coid = #{coid,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM t_comments
+        DELETE FROM c_comments
         WHERE coid = #{coid,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.CommentVoExample">
-        delete from t_comments
+        delete from c_comments
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.CommentVo" useGeneratedKeys="true" keyProperty="coid">
-        INSERT INTO t_comments (coid, cid, created,
+        INSERT INTO c_comments (coid, cid, created,
                                 author, author_id, owner_id,
                                 mail, url, ip, agent,
                                 type, status, parent,
@@ -159,7 +159,7 @@
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.CommentVo" useGeneratedKeys="true"
             keyProperty="coid">
-        insert into t_comments
+        insert into c_comments
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="coid != null">
                 coid,
@@ -250,13 +250,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.CommentVoExample" resultType="java.lang.Long">
-        select count(*) from t_comments
+        select count(*) from c_comments
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_comments
+        update c_comments
         <set>
             <if test="record.coid != null">
                 coid = #{record.coid,jdbcType=INTEGER},
@@ -306,7 +306,7 @@
         </if>
     </update>
     <update id="updateByExampleWithBLOBs" parameterType="map">
-        update t_comments
+        update c_comments
         set coid = #{record.coid,jdbcType=INTEGER},
         cid = #{record.cid,jdbcType=INTEGER},
         created = #{record.created,jdbcType=INTEGER},
@@ -326,7 +326,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_comments
+        update c_comments
         set coid = #{record.coid,jdbcType=INTEGER},
         cid = #{record.cid,jdbcType=INTEGER},
         created = #{record.created,jdbcType=INTEGER},
@@ -345,7 +345,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.champion.blog.model.vo.CommentVo">
-        update t_comments
+        update c_comments
         <set>
             <if test="cid != null">
                 cid = #{cid,jdbcType=INTEGER},
@@ -390,7 +390,7 @@
         where coid = #{coid,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.champion.blog.model.vo.CommentVo">
-        UPDATE t_comments
+        UPDATE c_comments
         SET cid       = #{cid,jdbcType=INTEGER},
             created   = #{created,jdbcType=INTEGER},
             author    = #{author,jdbcType=VARCHAR},
@@ -407,7 +407,7 @@
         WHERE coid = #{coid,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.champion.blog.model.vo.CommentVo">
-        UPDATE t_comments
+        UPDATE c_comments
         SET cid       = #{cid,jdbcType=INTEGER},
             created   = #{created,jdbcType=INTEGER},
             author    = #{author,jdbcType=VARCHAR},

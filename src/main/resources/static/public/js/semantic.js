@@ -2998,7 +2998,7 @@ $.fn.checkbox = function(parameters) {
               module.verbose('Using default check action on initialized checkbox');
               return;
             }
-            if( $target.is(selector.link) ) {
+            if( $target.is(selector.links) ) {
               module.debug('Clicking link inside checkbox, skipping toggle');
               return;
             }

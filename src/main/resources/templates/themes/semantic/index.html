@@ -1,73 +1,103 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--header-->
 <div th:replace="themes/semantic/header::header(null,null)"></div>
-<!--/*@thymesVar id="commons" type="com.champion.blog.utils.Commons"*/-->
 <body>
-<!-- middle container -->
-<div class="ui main container">
-    <h1 class="ui header aligned center">Welcome to Champion Blog</h1>
-
-    <!--video-->
-    <div class="ui text container video">
-        <div class="ui embed headvideo" data-icon="right circle arrow"
-             th:attr="data-url=${#servletContext.contextPath + '/semantic/public/video/1.mp4'},
-             data-placeholder=${#servletContext.contextPath + '/semantic/public/images/vimeo-example.jpg'}"
-        ></div>
-    </div>
-
-    <div class="ui inverted section divider"></div>
-
-    <!--search-->
-    <div class="ui text container">
-        <div class="ui action left icon input" id="middleSearch">
-            <i class="search icon"></i>
-            <input type="text" placeholder="输入关键字...">
-            <div class="ui teal button">搜索文章</div>
+<section class="section">
+    <div class="ui vertical masthead center aligned segment inverted">
+        <div class="ui text container">
+            <h1 class="ui header inverted">
+                Imagine
+            </h1>
+            <h2>Do whatever you want when you want to.</h2>
         </div>
     </div>
 
-    <!--articles-->
-    <div class="ui text container">
+    <div class="ui search container">
+        <div class="ui fluid container">
+            <div class="ui action left icon input" id="middleSearch">
+                <i class="search icon"></i>
+                <input type="text" placeholder="输入关键字...">
+                <div class="ui teal button">搜索文章</div>
+            </div>
+        </div>
+    </div>
 
-        <!--articles items-->
-        <div class="ui divided items" th:each="article: ${articles.list}">
-            <div class="item card">
-                <div class="ui small image bordered">
-                    <div class="ui blurring inverted dimmer">
-                        <div class="content">
-                            <div class="center">
-                                <!--填充文章类别标志-->
-                                <div class="ui teal button" th:text="${article.categories}"></div>
-                            </div>
+    <!-- middle container -->
+    <div class="ui main container">
+        <!--search-->
+
+        <!--articles-->
+        <div class="ui segment vertical" id="articlestiky">
+            <div class="ui header">
+                <i class="book icon"></i>
+                <h6 class="content">文章列表 >></h6>
+            </div>
+
+            <!--article left-->
+            <!--            <div class="ui left dividing very close rail" style="margin-right: 3em">-->
+            <!--                <div class="ui segment medium center aligned vertical">-->
+            <!--                    <div class="ui sticky articleleftstiky">-->
+            <!--                        <h3 class="ui header">Stuck Content</h3>-->
+            <!--                        <p>Left Rail Content </p>-->
+            <!--                        <p>Left Rail Content </p>-->
+            <!--                        <p>Left Rail Content </p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <!--article right-->
+            <!--            <div class="ui right very close rail" style="margin-left: 3em">-->
+            <!--                <div class="ui segment medium center aligned vertical">-->
+            <!--                    <h3 class="ui header">Stuck Content</h3>-->
+            <!--                    <p>Right Rail Content </p>-->
+            <!--                    <p>Right Rail Content </p>-->
+            <!--                    <p>Right Rail Content </p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <!--articles items-->
+            <div class="ui very relaxed divided items" th:each="article: ${articles.list}">
+                <div class="item">
+                    <a class="ui small image" href="http://www.baidu.com">
+                        <img th:src="@{'/public/images/' + ${article.categories} + '.png'}" alt="类别"/>
+                    </a>
+                    <div class="content">
+                        <!--<a class="header">elasticsearch mapping 作用</a>-->
+                        <a class="ui header" href="http://www.baidu.com"><h1 th:text="${article.title}"></h1></a>
+                        <div class="meta">
+                            <i class="small grey user icon" style="margin: 0 5px"></i><a
+                                href="http://www.baidu.com" th:text="${commons.getUserName(article.authorId)}"></a>
+                            <i class="small grey clock icon" style="margin: 0 5px"></i><a
+                                href="http://www.baidu.com"
+                                th:text="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"></a>
                         </div>
-                    </div>
-                    <img th:src="@{'/semantic/public/images/' + ${article.categories} + '.png'}"/>
-                </div>
-                <div class="content">
-                    <h3 class="ui header"><a class="ui middle" th:text="${article.title}"></a></h3>
-                    <div class="description">
-                        <p th:text="${commons.intro(article.content,100)}"></p>
-                    </div>
-                    <div class="ui labels teal small extra">
-                        <div class="ui label" th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"></div>
-                        <a th:href="${#request.getContextPath() + commons.permalink(article)}"><div class="ui right floated primary button">进入阅读<i class="right chevron icon"></i></div></a>
-                    </div>
-                    <div class="meta">
-                        <span class="cinema">邝凯</span>
-                        <span class="cinema" th:text="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"></span>
+                        <div class="description article">
+                            <p th:text="${commons.intro(article.content,100)}">
+                            </p>
+                        </div>
+                        <div class="ui labels extra ptags">
+                            <a class="ui small label"
+                               th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"></a>
+                            <!--                            <a class="ui small brown label" href="">标签2</a>-->
+                            <!--                            <a class="ui small green label" href="">标签3</a>-->
+                            <!--                            <a class="ui small olive label" href="">标签4</a>-->
+                            <!--                            <a class="ui small grey label" href="">标签5</a>-->
+                            <!--                            <a class="ui small red label" href="">标签6</a>-->
+                            <!--                            <a class="ui small black label" href="">标签7</a>-->
+                            <a class="ui mini right floated primary button"
+                               th:href="${#request.getContextPath() + commons.permalink(article)}">进入阅读 <i
+                                    class="right chevron icon"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="ui inverted section divider"></div>
         </div>
-
-        <div th:replace="comm/macros::pageNav(${articles},'←','→','page')"></div>
-
     </div>
 
-</div>
-
-<div th:replace="themes/semantic/footer::footer"></div>
-<a href="#" class="cd-top">Top</a>
+    <div th:replace="comm/page::page(${articles},'上一页','下一页','page')"></div>
+</section>
+<!--segment-->
 </body>
+<div th:replace="themes/semantic/footer::footer"></div>
 </html>

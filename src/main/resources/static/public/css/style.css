@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+.main.container {
+    margin-top: 2em;
+    margin-bottom: 5em;
+}
+
+.footer.segment {
+    padding: 5em 0 4em 0;
+    margin: 0;
+    border: none;
+    border-radius: unset;
+
+}
+
+#middleSearch {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    width: 100%;
+}
+
+/*自定义显示菜单部分*/
+.red-border {
+    border: 1px solid red;
+}
+
+.green-border {
+    border: 1px solid green;
+}
+
+.blue-border {
+    border: 1px solid blue;
+}
+
+/*pusher部分*/
+/*.pusher {*/
+/*    background: #F7F7F7;*/
+/*}*/
+
+/*masthead*/
+.masthead.segment {
+    min-height: 400px;
+    padding: 1em 0em;
+}
+
+.masthead .logo.item img {
+    margin-right: 1em;
+}
+
+.masthead .ui.menu .ui.button {
+    margin-left: 0.5em;
+}
+
+.masthead h1.ui.header {
+    margin-top: 1em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+/*分页菜单*/
+div.ui.pagination.menu {
+    margin-bottom: 0.5em;
+}
+
+div.ui.pagination.menu {
+    margin-bottom: 1em;
+}
+
+div.container.pageinfo {
+    text-align: center;
+}
+
+.pagination.menu {
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
+/*文章描述部分*/
+div.description.article {
+    height: 60px;
+    width: auto;
+}
+
+div.description.article p {
+    font-size: 10px;
+    text-indent: 2em;
+    letter-spacing: 1px;
+}
+
+/*图片固定*/
+.image-fix-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-fix-image {
+    width: 100%;
+    height: auto;
+}
+
+/*定位三部*/
+header {
+    flex: 0 0 auto;
+}
+
+section {
+    flex: 1 0 auto;
+    background: #F7F7F7;
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+/*main top menu*/
+#top-menu {
+    margin: 0;
+}
+
+/*post-list样式*/
+.post-list {
+    margin: 2em 0;
+}
+
+.post-des {
+    height: 8em;
+    text-indent: 2em;
+    font-size: 0.8em;
+}
+.post-meta span {
+    font-size: 0.8em;
+}
+/*标签颜色设置*/
+.ptags a:nth-child(1n) {
+    background-color: #f2711c!important;
+    border-color: #f2711c!important;
+    color: #fff!important;
+}
+.ptags a:nth-child(2n) {
+    background-color: #a5673f!important;
+    border-color: #a5673f!important;
+    color: #fff;!important;
+}
+.ptags a:nth-child(3n) {
+    background-color: #21ba45!important;
+    border-color: #21ba45!important;
+    color: #fff;!important;
+}
+.ptags a:nth-child(4n) {
+    background-color: #b5cc18!important;
+    border-color: #b5cc18!important;
+    color: #fff;!important;
+}
+.ptags a:nth-child(5n) {
+    background-color: #767676!important;
+    border-color: #767676!important;
+    color: #fff;!important;
+}
+.ptags a:nth-child(6n) {
+    background-color: #db2828!important;
+    border-color: #db2828!important;
+    color: #fff;!important;
+}
+.ptags a:nth-child(7n) {
+    background-color: #1b1c1d!important;
+    border-color: #1b1c1d!important;
+    color: #fff;!important;
+}
+.ptags a:last-child {
+    background-color: #2185d0!important;
+    border-color: unset!important;
+    color: #fff;!important;
+}
+
+/*about*/
+.aboutlist a {
+    margin: 4px 0;
+}
+

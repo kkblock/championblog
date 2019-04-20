@@ -2,6 +2,8 @@ package com.champion.blog.service;
 
 import com.champion.blog.model.vo.UserVo;
 
+import java.util.List;
+
 /**
  * User interface
  */
@@ -37,4 +39,10 @@ public interface UserService {
      * @return
      */
     void updateByUid(UserVo userVo);
+
+    /**
+     * 查询所有的用户
+     * @return
+     */
+    List<UserVo> findAll();
 }

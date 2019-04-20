@@ -2,6 +2,9 @@ package com.champion.blog.model.vo;
 
 import java.io.Serializable;
 
+/**
+ * 文件
+ */
 public class AttachVo implements Serializable {
 
     private Integer id;

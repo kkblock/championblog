@@ -75,7 +75,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_relationships
+        from c_relationships
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -92,22 +92,22 @@
         </if>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.champion.blog.model.vo.RelationshipVoKey">
-        DELETE FROM t_relationships
+        DELETE FROM c_relationships
         WHERE cid = #{cid,jdbcType=INTEGER}
               AND mid = #{mid,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.RelationshipVoExample">
-        delete from t_relationships
+        delete from c_relationships
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.RelationshipVoKey">
-        INSERT INTO t_relationships (cid, mid)
+        INSERT INTO c_relationships (cid, mid)
         VALUES (#{cid,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.RelationshipVoKey">
-        insert into t_relationships
+        insert into c_relationships
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cid != null">
                 cid,
@@ -127,13 +127,13 @@
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.RelationshipVoExample"
             resultType="java.lang.Long">
-        select count(*) from t_relationships
+        select count(*) from c_relationships
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_relationships
+        update c_relationships
         <set>
             <if test="record.cid != null">
                 cid = #{record.cid,jdbcType=INTEGER},
@@ -147,7 +147,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_relationships
+        update c_relationships
         set cid = #{record.cid,jdbcType=INTEGER},
         mid = #{record.mid,jdbcType=INTEGER}
         <if test="_parameter != null">

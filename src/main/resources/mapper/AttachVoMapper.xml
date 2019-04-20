@@ -78,7 +78,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from t_attach
+        from c_attach
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -97,21 +97,21 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_attach
+        from c_attach
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM t_attach
+        DELETE FROM c_attach
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.champion.blog.model.vo.AttachVoExample">
-        delete from t_attach
+        delete from c_attach
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.champion.blog.model.vo.AttachVo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_attach (id, fname, ftype,
+        INSERT INTO c_attach (id, fname, ftype,
                               fkey, author_id, created
         )
         VALUES (#{id,jdbcType=INTEGER}, #{fname,jdbcType=VARCHAR}, #{ftype,jdbcType=VARCHAR},
@@ -120,7 +120,7 @@
     </insert>
     <insert id="insertSelective" parameterType="com.champion.blog.model.vo.AttachVo" useGeneratedKeys="true"
             keyProperty="id">
-        insert into t_attach
+        insert into c_attach
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -163,13 +163,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.champion.blog.model.vo.AttachVoExample" resultType="java.lang.Long">
-        select count(*) from t_attach
+        select count(*) from c_attach
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update t_attach
+        update c_attach
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -195,7 +195,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update t_attach
+        update c_attach
         set id = #{record.id,jdbcType=INTEGER},
         fname = #{record.fname,jdbcType=VARCHAR},
         ftype = #{record.ftype,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.champion.blog.model.vo.AttachVo">
-        update t_attach
+        update c_attach
         <set>
             <if test="fname != null">
                 fname = #{fname,jdbcType=VARCHAR},
@@ -228,7 +228,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.champion.blog.model.vo.AttachVo">
-        UPDATE t_attach
+        UPDATE c_attach
         SET fname     = #{fname,jdbcType=VARCHAR},
             ftype     = #{ftype,jdbcType=VARCHAR},
             fkey      = #{fkey,jdbcType=VARCHAR},

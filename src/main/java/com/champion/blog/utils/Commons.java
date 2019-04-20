@@ -3,7 +3,9 @@ package com.champion.blog.utils;
 import com.champion.blog.constant.WebConst;
 import com.champion.blog.model.vo.ContentVo;
 import com.champion.blog.model.vo.OptionVo;
+import com.champion.blog.model.vo.UserVo;
 import com.champion.blog.service.OptionService;
+import com.champion.blog.service.UserService;
 import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +18,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +31,9 @@ public final class Commons {
     @Resource
     private OptionService optionService;
 
+    @Resource
+    private UserService userService;
+
     /**
      * 初始化必要信息
      */
@@ -39,6 +45,9 @@ public final class Commons {
             options.put(option.getName(), option.getValue());
         });
         WebConst.initConfig = options;
+
+        List<UserVo> userAll = userService.findAll();
+        WebConst.userAll = userAll;
     }
 
     public static String THEME = "themes/default";
@@ -360,6 +369,26 @@ public final class Commons {
         map.put("github", WebConst.initConfig.get(prefix + "github"));
         map.put("twitter", WebConst.initConfig.get(prefix + "twitter"));
         return map;
+    }
+
+    /**
+     * 根据id获取作者
+     * @param uid uid
+     * @return username
+     */
+    public static String getUserName(Integer uid) {
+        List<UserVo> userAll = WebConst.userAll;
+        AtomicReference<String> targetName = new AtomicReference<>();
+        for (UserVo d : userAll) {
+            if (d.getUid().equals(uid)) {
+                targetName.set(d.getUsername());
+                break;
+            }
+        }
+        if ("admin".equalsIgnoreCase(targetName.get()) || "kuangkai".equalsIgnoreCase(targetName.get())) {
+            targetName.set("邝凯");
+        }
+        return targetName.get();
     }
 
 }
