@@ -19,22 +19,24 @@
 </footer>
 
 <!--modal-->
-<div class="ui mini modal wechatpicmodal">
-    <i class="close icon"></i>
-    <div class="ui image centered bordered content image-fix-div">
-        <img class="image-fix-image" src="public/images/online/wechat.jpg" alt="微信二维码"/>
+<div style="display: none">
+    <div class="ui mini modal wechatpicmodal">
+        <i class="close icon"></i>
+        <div class="ui image centered bordered content image-fix-div">
+            <img class="image-fix-image" th:src="@{/public/images/online/wechat.jpg}" alt="微信二维码"/>
+        </div>
     </div>
-</div>
-<div class="ui mini modal weibopicmodal">
-    <i class="close icon"></i>
-    <div class="ui image centered bordered content image-fix-div">
-        <img class="image-fix-image" src="public/images/online/weibo.png" alt="微博二维码"/>
+    <div class="ui mini modal weibopicmodal">
+        <i class="close icon"></i>
+        <div class="ui image centered bordered content image-fix-div">
+            <img class="image-fix-image" th:src="@{/public/images/online/weibo.png}" alt="微博二维码"/>
+        </div>
     </div>
-</div>
-<div class="ui mini modal qqpicmodal">
-    <i class="close icon"></i>
-    <div class="ui image centered bordered content image-fix-div">
-        <img class="image-fix-image" src="public/images/online/qq.jpg" alt="QQ二维码"/>
+    <div class="ui mini modal qqpicmodal">
+        <i class="close icon"></i>
+        <div class="ui image centered bordered content image-fix-div">
+            <img class="image-fix-image" th:src="@{/public/images/online/qq.jpg}" alt="QQ二维码"/>
+        </div>
     </div>
 </div>
 </body>

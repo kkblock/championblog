@@ -271,11 +271,15 @@ public final class Commons {
         int pos = value.indexOf("<!--more-->");
         if (pos != -1) {
             String html = value.substring(0, pos);
-            return ChampionUtils.htmlToText(ChampionUtils.mdToHtml(html));
+            String text = ChampionUtils.htmlToText(ChampionUtils.mdToHtml(html));
+            if (text.length() > len) {
+                return text.substring(0,len) + "......";
+            }
+            return text;
         } else {
             String text = ChampionUtils.htmlToText(ChampionUtils.mdToHtml(value));
             if (text.length() > len) {
-                return text.substring(0, len);
+                return text.substring(0, len) + "......";
             }
             return text;
         }

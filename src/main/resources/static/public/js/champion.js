@@ -29,11 +29,4 @@ function onlineshowmodal(param) {
     }
 }
 
-/**
- * 读取文章
- * @param aid 文章id
- */
-postReading = function (aid) {
-    console.log("获取到文章，准备进入文章细节：" + aid)
-}
 

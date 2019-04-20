@@ -20,4 +20,14 @@ $(document).ready(function () {
     //载入highlight函数
     hljs.initHighlightingOnLoad();
 
+    /**
+     * 读取文章
+     * @param obj
+     */
+    postReading = function (obj) {
+        var name = $(obj).attr('name');
+        console.log(name);
+        window.location.href = name;
+    }
+
 });

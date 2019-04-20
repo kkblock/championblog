@@ -186,9 +186,11 @@ footer {
     border-color: unset!important;
     color: #fff;!important;
 }
+blockquote, dl, ol, p, pre, table, ul {
+    margin: 20px 0
+}
 
 /*about*/
 .aboutlist a {
     margin: 4px 0;
 }
-

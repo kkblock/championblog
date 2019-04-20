@@ -29,9 +29,9 @@
     <!-- Top Menu -->
     <div id="top-menu" class="ui stackable main menu large top borderless">
         <div class="ui container">
-            <div class="item" th:href="${#request.getContextPath() + commons.site_url()}">
+            <a class="item" th:href="${#request.getContextPath() + commons.site_url()}">
                 <img th:src="@{/public/images/logo.png}" alt="主页">
-            </div>
+            </a>
             <div class="right menu">
                 <div class="ui simple dropdown item">
                     归档

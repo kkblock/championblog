@@ -4,21 +4,21 @@
 <body>
 <!--pageinfo-->
 <div th:fragment="pageNav(pageInfo, prevText, nextText, prefix)" class="ui container pageinfo">
-    <div class="ui huge right aligned pagination menu borderless" style="">
-        <a class="icon link item disabled">
+    <div class="ui huge right aligned pagination menu borderless">
+        <!--上一页-->
+        <a th:class="${pageInfo.hasPreviousPage} ?'icon link item':'icon link item disabled'"
+           th:href="@{'/'+${prefix}+'/'+${pageInfo.prePage}}">
             <i class="arrow left icon"></i> &nbsp;上一页
         </a>
-        <a class="icon link item active blue">1</a>
-        <a class="icon link item">2</a>
-        <a class="icon link item">3</a>
-        <a class="icon link item">4</a>
-        <a class="icon link item">5</a>
-        <a class="icon link item">6</a>
-        <a class="icon link item">7</a>
-        <a class="icon link item">8</a>
-        <a class="icon link item">9</a>
-        <a class="icon link item">10</a>
-        <a class="item">
+
+        <!--content-->
+        <th:block th:each="navIndex :${ pageInfo.navigatepageNums}">
+            <a th:class="${pageInfo.pageNum==navIndex} ? 'icon link item active blue':'icon link item'"
+               th:href="@{'/page/'+${navIndex}}" th:text="${navIndex}"></a>
+        </th:block>
+
+        <!--下一页-->
+        <a th:class="${pageInfo.hasNextPage ? 'icon link item': 'icon link item disabled'}" th:href="@{'/'+${prefix}+'/'+${pageInfo.nextPage}}">
             下一页 &nbsp;<i class="arrow right icon"></i>
         </a>
     </div>

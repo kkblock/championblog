@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="themes/semantic/header::header(null,null)"></div>
+<body>
+<section class="section">
+    <div class="ui main container">
+        <div class="ui header" style="margin-bottom: 1em">
+            <i class="book icon"></i>
+            <h6 class="content">
+                <th:block th:text="${type}"/>
+                :
+                <th:block th:text="${keyword}"/>
+                >>
+            </h6>
+        </div>
+
+        <!--no article-->
+        <th:block th:if="${commons.is_empty(articles)}">
+            <div>
+                <p>抱歉，还没有相关文章.</p>
+            </div>
+        </th:block>
+
+        <!--hava article-->
+        <th:block th:unless="${commons.is_empty(articles)}">
+            <div class="ui stackable doubling cards link raised four">
+                <th:block th:each="article : ${articles.list}">
+
+                    <!-- card1-->
+                    <div onclick="postReading(this);" class="card blue" th:name="${#request.getContextPath() + commons.permalink(article)}">
+                        <div class="content">
+                            <h2 class="ui header"><a th:href="${#request.getContextPath() + commons.permalink(article)}"
+                                                     th:text="${article.title}"></a></h2>
+                            <div class="meta post-meta">
+                                <div class="ui labels circular ptags">
+                                    <a class="ui mini label"
+                                       th:each="tag: ${#strings.listSplit(article.tags,',').subList(0,4)}" th:text="${tag}"
+                                       th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="description post-des">
+                                <th:block th:utext="${commons.intro(article.content,80)}"/>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <i class="small teal user icon"></i>
+                            <th:block th:utext="${commons.getUserName(article.authorId)}"/>
+                            发布于
+                            <i class="small blue clock icon"></i>
+                            <th:block th:utext="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"/>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </div>
+
+    <div th:replace="comm/page::page(${articles},'上一页','下一页','tag')"></div>
+</section>
+</body>
+<div th:replace="themes/semantic/footer::footer"></div>
+</html>

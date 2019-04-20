@@ -478,7 +478,7 @@
 
     <select id="findByCatalog" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT a.*
-        FROM c_contents a LEFT JOIN t_relationships b ON a.cid = b.cid
+        FROM c_contents a LEFT JOIN c_relationships b ON a.cid = b.cid
         WHERE b.mid = #{value} AND a.status = 'publish' AND a.type = 'post'
         ORDER BY a.created DESC
     </select>
