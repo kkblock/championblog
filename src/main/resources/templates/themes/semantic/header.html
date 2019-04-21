@@ -39,11 +39,11 @@
                     <div class="menu">
                         <a class="item" th:href="${#request.getContextPath() + commons.site_url('/archives')}"><i
                                 class="calendar times outline icon"></i> 时间 </a>
-                        <a class="item" th:href="${#request.getContextPath() + commons.site_url('/archives')}"><i
+                        <a class="item" th:href="${#request.getContextPath() + commons.site_url('/archives/category')}"><i
                                 class="list icon"></i> 类别</a>
                     </div>
                 </div>
-                <a class="item">
+                <a class="item" th:href="${'mailto:' + commons.site_email()}">
                     <i class="mail icon"></i> 致信
                 </a>
                 <a class="item" th:href="${#request.getContextPath() + commons.site_url('/links')}">

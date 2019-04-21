@@ -145,6 +145,14 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
+    public PageInfo<ContentVo> getArticlesByUid(Integer uid, int page, int limit) {
+        ContentVoExample contentVoExample = new ContentVoExample();
+        contentVoExample.setOrderByClause("created desc");
+        contentVoExample.createCriteria().andAuthorIdEqualTo(uid);
+        return this.getArticlesWithpage(contentVoExample, page, limit);
+    }
+
+    @Override
     public PageInfo<ContentVo> getArticles(String keyword, Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         ContentVoExample contentVoExample = new ContentVoExample();

@@ -16,6 +16,7 @@
                        th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}" th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
                 </div>
             </div>
+            <div class="ui divider"></div>
             <!--文章主题内容-->
             <div class="ui basic segment post-content">
                 <th:block th:utext="${commons.article(article.content)}"/>

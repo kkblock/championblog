@@ -59,18 +59,17 @@
             <!--articles items-->
             <div class="ui very relaxed divided items" th:each="article: ${articles.list}">
                 <div class="item">
-                    <a class="ui small image" href="http://www.baidu.com">
+                    <a class="ui small image" th:href="${#request.getContextPath() + '/category/' + article.categories}">
                         <img th:src="@{'/public/images/' + ${article.categories} + '.png'}" alt="类别"/>
                     </a>
                     <div class="content">
                         <!--<a class="header">elasticsearch mapping 作用</a>-->
-                        <a class="ui header" href="http://www.baidu.com"><h1 th:text="${article.title}"></h1></a>
+                        <a class="ui header" th:href="${#request.getContextPath() + commons.permalink(article)}"><h1 th:text="${article.title}"></h1></a>
                         <div class="meta">
                             <i class="small grey user icon" style="margin: 0 5px"></i><a
-                                href="http://www.baidu.com" th:text="${commons.getUserName(article.authorId)}"></a>
-                            <i class="small grey clock icon" style="margin: 0 5px"></i><a
-                                href="http://www.baidu.com"
-                                th:text="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"></a>
+                                th:href="${#request.getContextPath() + '/posted/' + article.authorId}" th:text="${commons.getUserName(article.authorId)}"></a>
+                            <i class="small grey clock icon" style="margin: 0 5px"></i><th:block
+                                th:utext="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"/>
                         </div>
                         <div class="description article">
                             <p th:text="${commons.intro(article.content,100)}">
@@ -78,13 +77,8 @@
                         </div>
                         <div class="ui labels extra ptags">
                             <a class="ui small label"
-                               th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"></a>
-                            <!--                            <a class="ui small brown label" href="">标签2</a>-->
-                            <!--                            <a class="ui small green label" href="">标签3</a>-->
-                            <!--                            <a class="ui small olive label" href="">标签4</a>-->
-                            <!--                            <a class="ui small grey label" href="">标签5</a>-->
-                            <!--                            <a class="ui small red label" href="">标签6</a>-->
-                            <!--                            <a class="ui small black label" href="">标签7</a>-->
+                               th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"
+                               th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
                             <a class="ui mini right floated primary button"
                                th:href="${#request.getContextPath() + commons.permalink(article)}">进入阅读 <i
                                     class="right chevron icon"></i></a>

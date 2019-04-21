@@ -44,6 +44,15 @@ public interface ContentService {
     PageInfo<ContentVo> getArticles(Integer mid, int page, int limit);
 
     /**
+     * 查询作者uid 下面的所有文章
+     * @param uid uid
+     * @param page page
+     * @param limit limit
+     * @return ContentVo
+     */
+    PageInfo<ContentVo> getArticlesByUid(Integer uid,int page,int limit);
+
+    /**
      * 搜索、分页
      * @param keyword keyword
      * @param page page

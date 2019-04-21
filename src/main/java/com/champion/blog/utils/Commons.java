@@ -81,6 +81,10 @@ public final class Commons {
         return site_option("site_url") + sub;
     }
 
+    public static String site_email() {
+        return site_option("mail","kuangkai_jy@163.com");
+    }
+
     /**
      * 网站标题
      *

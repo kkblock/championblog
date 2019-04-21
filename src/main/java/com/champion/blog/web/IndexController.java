@@ -9,12 +9,14 @@ import com.champion.blog.model.bo.CommentBo;
 import com.champion.blog.model.bo.RestResponseBo;
 import com.champion.blog.model.vo.CommentVo;
 import com.champion.blog.model.vo.ContentVo;
+import com.champion.blog.model.vo.ContentVoExample;
 import com.champion.blog.model.vo.MetaVo;
 import com.champion.blog.service.CommentService;
 import com.champion.blog.service.ContentService;
 import com.champion.blog.service.MetaService;
 import com.champion.blog.service.SiteService;
 import com.champion.blog.utils.ChampionUtils;
+import com.champion.blog.utils.Commons;
 import com.champion.blog.utils.IPKit;
 import com.champion.blog.utils.PatternKit;
 import com.github.pagehelper.PageInfo;
@@ -31,17 +33,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class IndexController extends BaseController{
+public class IndexController extends BaseController {
 
     /**
      * 首页跳转
+     *
      * @return index.html
      */
     @RequestMapping("/index")
-    public String indexHtml(){
+    public String indexHtml() {
         return "index";
     }
 
@@ -61,7 +65,8 @@ public class IndexController extends BaseController{
 
     /**
      * 首页
-     * @return  this.index(request, 1, limit);
+     *
+     * @return this.index(request, 1, limit);
      */
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -137,7 +142,8 @@ public class IndexController extends BaseController{
 
     /**
      * 抽取公共方法
-     * @param request HttpServletRequest
+     *
+     * @param request  HttpServletRequest
      * @param contents ContentVo
      */
     private void completeArticle(HttpServletRequest request, ContentVo contents) {
@@ -154,7 +160,8 @@ public class IndexController extends BaseController{
 
     /**
      * 注销
-     * @param session HttpSession
+     *
+     * @param session  HttpSession
      * @param response HttpServletResponse
      */
     @RequestMapping("logout")
@@ -245,6 +252,7 @@ public class IndexController extends BaseController{
 
     /**
      * 分类页
+     *
      * @return this.categories(request, keyword, 1, limit);
      */
     @GetMapping(value = "category/{keyword}")
@@ -274,7 +282,8 @@ public class IndexController extends BaseController{
 
     /**
      * 归档页
-     * @return this.render("archives");
+     *
+     * @return this.render(" archives ");
      */
     @GetMapping(value = "archives")
     public String archives(HttpServletRequest request) {
@@ -284,8 +293,41 @@ public class IndexController extends BaseController{
     }
 
     /**
+     * 根据类别归档
+     * @param request request
+     * @param limit limit
+     * @return this.archivesByCategories(request, 1, limit);
+     */
+    @GetMapping(value = "archives/category")
+    public String archivesByCategories(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+        return this.archivesByCategories(request, 1, limit);
+    }
+
+    @GetMapping(value = "archives/category/{page}")
+    public String archivesByCategories(HttpServletRequest request, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+        page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
+        List<MetaVo> metas = metaService.getMetas(Types.CATEGORY.getType());
+
+        ContentVoExample contentVoExample = new ContentVoExample();
+        contentVoExample.setOrderByClause("created desc");
+        ContentVoExample.Criteria criteria = contentVoExample.createCriteria();
+        criteria.andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo("publish");
+        List<String> metaCates = new ArrayList<>();
+        for (MetaVo meta : metas) {
+            metaCates.add(meta.getName());
+        }
+        criteria.andCategoriesIn(metaCates);
+        PageInfo<ContentVo> contentsPaginator = contentService.getArticlesWithpage(contentVoExample, page, limit);
+        request.setAttribute("articles", contentsPaginator);
+        request.setAttribute("type", "归档");
+        request.setAttribute("keyword", "类别");
+        return this.render("page-category");
+    }
+
+    /**
      * 友链页
-     * @return this.render("links");
+     *
+     * @return this.render(" links ");
      */
     @GetMapping(value = "links")
     public String links(HttpServletRequest request) {
@@ -326,6 +368,7 @@ public class IndexController extends BaseController{
 
     /**
      * 搜索页
+     *
      * @param keyword keyword
      * @return this.search(request, keyword, 1, limit);
      */
@@ -345,9 +388,32 @@ public class IndexController extends BaseController{
     }
 
     /**
+     * 根据发布作者搜索所有文章
+     *
+     * @param request HttpServletRequest
+     * @param uid     uid
+     * @param limit   limit
+     * @return page-category
+     */
+    @GetMapping(value = "posted/{uid}")
+    public String searchByAuthor(HttpServletRequest request, @PathVariable int uid, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+        return this.searchByAuthor(request, uid, 1, limit);
+    }
+
+    @GetMapping(value = "posted/{uid}/{page}")
+    public String searchByAuthor(HttpServletRequest request, @PathVariable int uid, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+        page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
+        PageInfo<ContentVo> articles = contentService.getArticlesByUid(uid, page, limit);
+        request.setAttribute("articles", articles);
+        request.setAttribute("type", "作者");
+        request.setAttribute("keyword", Commons.getUserName(uid));
+        return this.render("page-category");
+    }
+
+    /**
      * 更新文章的点击率
      *
-     * @param cid cid
+     * @param cid   cid
      * @param chits chits
      */
     private void updateArticleHit(Integer cid, Integer chits) {
@@ -382,10 +448,10 @@ public class IndexController extends BaseController{
      * 标签分页
      *
      * @param request HttpServletRequest
-     * @param name name
-     * @param page page
-     * @param limit limit
-     * @return this.render("page-category");
+     * @param name    name
+     * @param page    page
+     * @param limit   limit
+     * @return this.render(" page - category ");
      */
     @GetMapping(value = "tag/{name}/{page}")
     public String tags(HttpServletRequest request, @PathVariable String name, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -410,9 +476,9 @@ public class IndexController extends BaseController{
     /**
      * 设置cookie
      *
-     * @param name name
-     * @param value value
-     * @param maxAge maxAge
+     * @param name     name
+     * @param value    value
+     * @param maxAge   maxAge
      * @param response HttpServletResponse
      */
     private void cookie(String name, String value, int maxAge, HttpServletResponse response) {
@@ -426,7 +492,7 @@ public class IndexController extends BaseController{
      * 检查同一个ip地址是否在2小时内访问同一文章
      *
      * @param request HttpServletRequest
-     * @param cid cid
+     * @param cid     cid
      * @return boolean
      */
     private boolean checkHitsFrequency(HttpServletRequest request, String cid) {
