@@ -62,6 +62,10 @@ public final class Commons {
         return paginator == null || (paginator.getList() == null) || (paginator.getList().size() == 0);
     }
 
+    public static boolean is_blank(String param) {
+        return StringUtils.isBlank(param);
+    }
+
     /**
      * 网站链接
      *
@@ -397,6 +401,23 @@ public final class Commons {
             targetName.set("邝凯");
         }
         return targetName.get();
+    }
+
+    /**
+     * 获取文章标题的指定长度 避免超出边界
+     * @param title
+     * @param size
+     * @return
+     */
+    public static String getCatalogTileSubSize(String title,int size) {
+        if (StringUtils.isBlank(title)) {
+            return title;
+        }
+        if (title.length() >= size) {
+            return title.substring(0,size) + "...";
+        }else {
+            return title;
+        }
     }
 
 }

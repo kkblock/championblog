@@ -28,6 +28,6 @@ $(document).ready(function () {
         var name = $(obj).attr('name');
         console.log(name);
         window.location.href = name;
-    }
+    };
 
 });

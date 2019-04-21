@@ -30,11 +30,11 @@
                     <div onclick="postReading(this);" class="card blue" th:name="${#request.getContextPath() + commons.permalink(article)}">
                         <div class="content">
                             <h2 class="ui header"><a th:href="${#request.getContextPath() + commons.permalink(article)}"
-                                                     th:text="${article.title}"></a></h2>
+                                                     th:text="${commons.getCatalogTileSubSize(article.title,25)}"></a></h2>
                             <div class="meta post-meta">
                                 <div class="ui labels circular ptags">
                                     <a class="ui mini label"
-                                       th:each="tag: ${#strings.listSplit(article.tags,',').subList(0,4)}" th:text="${tag}"
+                                       th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"
                                        th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
                                 </div>
                             </div>
