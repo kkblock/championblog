@@ -18,7 +18,7 @@
             </div>
             <div class="ui divider"></div>
             <!--文章主题内容-->
-            <div class="ui basic segment post-content">
+            <div class="ui basic segment post-content" id="post-content">
                 <th:block th:utext="${commons.article(article.content)}"/>
             </div>
             <div class="ui divider"></div>
@@ -27,7 +27,6 @@
             </div>
         </div>
     </section>
-
 
 </body>
 <div th:replace="themes/semantic/footer::footer"></div>

@@ -33,6 +33,9 @@
                 <img th:src="@{/public/images/logo.png}" alt="主页">
             </a>
             <div class="right menu">
+                <a class="item" th:href="${#request.getContextPath() + commons.site_url()}">
+                    <i class="home icon"></i> 首页
+                </a>
                 <div class="ui simple dropdown item">
                     归档
                     <i class="dropdown icon"></i>
