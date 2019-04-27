@@ -11,14 +11,20 @@
     <meta name="keywords" th:content="${keywords ?: commons.site_option('site_keywords')}"/>
     <meta name="description" th:content="${description ?:commons.site_option('site_description')}"/>
 
+    <meta name="toTop" content="true">
+
     <link rel="shortcut icon" th:href="@{/public/images/logo.png}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{/public/css/semantic.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/public/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/public/css/jquery.autoMenu.css}">
 
     <script type="application/javascript" th:src="@{/public/js/jquery.min.js}"></script>
     <script type="application/javascript" th:src="@{/public/js/semantic.min.js}"></script>
     <script type="application/javascript" th:src="@{/public/js/champion.js}"></script>
     <script type="application/javascript" th:src="@{/public/js/main.js}"></script>
+    <script type="application/javascript" th:src="@{/public/js/toTop.js}"></script>
+    <script type="application/javascript" th:src="@{/public/js/jquery.autoMenu.js}"></script>
+
 
     <!--highlight-->
     <link rel="stylesheet" th:href="@{/public/css/highlight/a11y-dark.css}">

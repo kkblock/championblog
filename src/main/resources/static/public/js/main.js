@@ -4,13 +4,6 @@ $(document).ready(function () {
         type: 'fixed'
     });
 
-    $('.special.card .image').dimmer({
-        on: 'hover'
-    });
-    $('.card .dimmer').dimmer({
-        on: 'hover'
-    });
-
     $('.articleleftstiky').sticky({
         context: '#articlestiky',
         pushing: true,
