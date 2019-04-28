@@ -29,8 +29,8 @@
                     <!-- card1-->
                     <div onclick="postReading(this);" class="card blue" th:name="${#request.getContextPath() + commons.permalink(article)}">
                         <div class="content">
-                            <h2 class="ui header"><a th:href="${#request.getContextPath() + commons.permalink(article)}"
-                                                     th:text="${commons.getCatalogTileSubSize(article.title,25)}"></a></h2>
+                            <a th:href="${#request.getContextPath() + commons.permalink(article)}"
+                               ><h2 class="ui header" th:text="${commons.getCatalogTileSubSize(article.title,15)}" style="min-height: 2.5em"></h2></a>
                             <div class="meta post-meta">
                                 <div class="ui labels circular ptags">
                                     <a class="ui mini label"
