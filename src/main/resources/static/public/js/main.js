@@ -24,13 +24,13 @@ $(document).ready(function () {
     };
 
     $('.post-content table').addClass('ui celled table');
-    $('.post-content h1').addClass('ui header');
-    $('.post-content h2').addClass('ui header');
-    $('.post-content h3').addClass('ui header');
-    $('.post-content h4').addClass('ui header');
-    $('.post-content h5').addClass('ui header');
-    $('.post-content h6').addClass('ui header');
-    $('.post-content p').addClass('ui basic segment');
+    $('.post-content h1').addClass('ui header orange');
+    $('.post-content h2').addClass('ui header blue');
+    $('.post-content h3').addClass('ui header orange');
+    $('.post-content h4').addClass('ui header blue');
+    $('.post-content h5').addClass('ui header orange');
+    $('.post-content h6').addClass('ui header blue');
+    // $('.post-content > p').addClass('ui basic segment');
     $('.post-content ul').addClass('ui list');
     $('.post-content ol').addClass('ui list');
     $('.post-content li').addClass('item');
