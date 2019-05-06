@@ -31,7 +31,6 @@
     <!-- middle container -->
     <div class="ui main container">
         <!--search-->
-
         <!--no article-->
         <th:block th:if="${commons.is_empty(articles)}">
             <div class="ui segment basic">
@@ -41,7 +40,7 @@
 
         <th:block th:unless="${commons.is_empty(articles)}">
             <!--articles-->
-            <div class="ui segment vertical" id="articlestiky">
+            <div class="ui segment basic vertical" id="articlestiky">
                 <div class="ui header">
                     <i class="book icon"></i>
                     <h6 class="content">文章列表 >></h6>
@@ -70,7 +69,7 @@
                 <!--            </div>-->
 
                 <!--articles items-->
-                <div class="ui very relaxed divided items" th:each="article: ${articles.list}">
+                <div class="ui very relaxed unstackable divided items" th:each="article: ${articles.list}">
                     <div class="item">
                         <a class="ui small image"
                            th:href="${#request.getContextPath() + '/category/' + article.categories}">
@@ -102,6 +101,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ui divider"></div>
                 </div>
             </div>
         </th:block>

@@ -44,6 +44,7 @@ public class BaseInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String contextPath = request.getContextPath();
         String uri = request.getRequestURI();
+        request.getParameter("login");
 
         LOG.info("UserAgent: {}", request.getHeader(USER_AGENT));
         LOG.info("用户访问地址: {}, 来路地址: {}", uri, IPKit.getIpAddrByRequest(request));
@@ -67,6 +68,7 @@ public class BaseInterceptor implements HandlerInterceptor {
         }
 
         //设置get请求的token
+        LOG.info("request.getMethod():{}",request.getMethod());
         if (request.getMethod().equals("GET")) {
             String csrf_token = UUID.UU64();
             // 默认存储30分钟

@@ -125,7 +125,7 @@ header {
 
 section {
     flex: 1 0 auto;
-    background: #F7F7F7;
+    /*background: #F7F7F7;*/
     position: relative;
 }
 

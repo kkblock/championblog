@@ -24,11 +24,11 @@ $(document).ready(function () {
     };
 
     $('.post-content table').addClass('ui celled table');
-    $('.post-content h1').addClass('ui header orange');
+    $('.post-content h1').addClass('ui header blue');
     $('.post-content h2').addClass('ui header blue');
-    $('.post-content h3').addClass('ui header orange');
+    $('.post-content h3').addClass('ui header blue');
     $('.post-content h4').addClass('ui header blue');
-    $('.post-content h5').addClass('ui header orange');
+    $('.post-content h5').addClass('ui header blue');
     $('.post-content h6').addClass('ui header blue');
     // $('.post-content > p').addClass('ui basic segment');
     $('.post-content ul').addClass('ui list');
