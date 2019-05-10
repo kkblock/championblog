@@ -14,12 +14,15 @@
     <meta name="toTop" content="true">
 
     <link rel="shortcut icon" th:href="@{/public/images/logo.png}" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/public/css/semantic.min.css}"/>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/public/css/semantic.min.css}"/>-->
+    <link th:href="@{https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/public/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/public/css/jquery.autoMenu.css}">
 
-    <script type="application/javascript" th:src="@{/public/js/jquery.min.js}"></script>
-    <script type="application/javascript" th:src="@{/public/js/semantic.min.js}"></script>
+    <!--<script type="application/javascript" th:src="@{/public/js/jquery.min.js}"></script>-->
+    <!--<script type="application/javascript" th:src="@{/public/js/semantic.min.js}"></script>-->
+    <script type="application/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js}"></script>
+    <script type="application/javascript" th:src="@{https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js}"></script>
     <script type="application/javascript" th:src="@{/public/js/championblog.js}"></script>
     <script type="application/javascript" th:src="@{/public/js/main.js}"></script>
     <script type="application/javascript" th:src="@{/public/js/toTop.js}"></script>
@@ -62,14 +65,6 @@
                     <i class="book icon"></i> 关于
                 </a>
             </div>
-            <!--                <div class="right menu">-->
-            <!--                    <a class="item">-->
-            <!--                        <div class="ui left icon input">-->
-            <!--                            <input type="text" placeholder="搜索...">-->
-            <!--                            <i class="search icon"></i>-->
-            <!--                        </div>-->
-            <!--                    </a>-->
-            <!--                </div>-->
         </div>
     </div>
 </header>

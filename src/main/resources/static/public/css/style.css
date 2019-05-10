@@ -218,6 +218,13 @@ blockquote, dl, ol, p, pre, table, ul {
     margin: 4px 0;
 }
 
+#recommand {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
 /*#post-content p {*/
 /*    font: 400 1em/1.8 Avenir, Tahoma, Arial, PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, Helvetica, sans-serif;*/
 /*    line-height: 2.1;*/
