@@ -35,3 +35,8 @@ function getContextPath() {
     var result = pathName.substr(0,index+1);
     return result;
 }
+
+ function searchinfo() {
+    var text = $('#searchinfo').val();
+    alert('功能开发中...');
+}

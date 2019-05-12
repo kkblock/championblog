@@ -34,7 +34,7 @@
             <!--recommand-->
             <div id="recommand" class="three wide column">
                 <div class="ui basic segment">
-                    <h2 class="ui header">WHAT'S NOT</h2>
+                    <h3 class="ui header">WHAT'S NOT</h3>
                     <div class="ui bulleted link list">
                         <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
                         <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
@@ -56,6 +56,14 @@
             </div>
             <!--articles-->
             <div id="articles" class="nine wide column">
+                <div class="ui icon warning floating message" id="messagetips">
+                    <i class="smile outline icon"></i>
+                    <i class="close icon" id="messagecloseicon"></i>
+                    <div class="content">
+                        <div class="header">Sorry</div>
+                        <p>本站刚刚开发不久，部分功能还在测试中，文章可以正常浏览。</p>
+                    </div>
+                </div>
                 <!--no article-->
                 <th:block th:if="${commons.is_empty(articles)}">
                     <div class="ui segment basic">
@@ -67,23 +75,23 @@
                     <div class="ui segment basic vertical" id="articlestiky">
                         <!--articles items-->
                         <div class="ui very relaxed unstackable items" th:each="article,userStat: ${articles.list}">
-                            <a class="ui header" th:href="${#request.getContextPath() + commons.permalink(article)}"><h2
-                                    th:text="${article.title}"></h2></a>
                             <div class="item">
                                 <a class="ui small image"
                                    th:href="${#request.getContextPath() + '/category/' + article.categories}">
-                                    <img th:src="@{'/public/images/' + ${article.categories == null? 'code': article.categories} + '.png'}"
+                                    <img th:src="@{'/public/images/category/' + ${article.categories == null? 'code': article.categories} + '.jpg.webp'}"
                                          alt="类别"/>
                                 </a>
                                 <div class="content">
+                                    <a class="ui header"
+                                       th:href="${#request.getContextPath() + commons.permalink(article)}"><h2
+                                            th:text="${article.title}"></h2></a>
                                     <!--<a class="header">elasticsearch mapping 作用</a>-->
-                                    <div class="meta">
+                                    <div class="meta articlemeta">
                                         <i class="small grey user icon" style="margin: 0 5px"></i><a
                                             th:href="${#request.getContextPath() + '/posted/' + article.authorId}"
                                             th:text="${commons.getUserName(article.authorId)}"></a>
                                         <i class="small grey clock icon" style="margin: 0 5px"></i>
-                                        <th:block
-                                                th:utext="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"/>
+                                        <span th:text="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"></span>
                                     </div>
                                     <div class="description article">
                                         <p th:text="${commons.intro(article.content,100)}">
@@ -103,32 +111,268 @@
                         </div>
                     </div>
                 </th:block>
+                <div th:replace="comm/page::page(${articles},'上一页','下一页','page')"></div>
             </div>
             <!--extrainfo-->
             <div id="extrainfo" class="four wide column">
                 <div class="ui search">
                     <div class="ui icon input">
-                        <input class="prompt" type="text" placeholder="检索文章..."/>
-                        <i class="search icon link"></i>
+                        <input id="searchinfo" class="prompt" type="text" placeholder="search..."/>
+                        <i class="search icon blue link" onclick="searchinfo();"></i>
                     </div>
                 </div>
                 <div class="ui piled basic segment">
-                    <h3 class="ui header">网站介绍</h3>
-                    <p>作者:邝凯</p>
-                    <p>时间:2019年4月</p>
-                    <p style="text-indent: 2em">有阴影的地方不用担心,转过身去,就是阳光</p>
+                    <h3 class="ui header">本站说明</h3>
+                    <p>作者：邝凯</p>
+                    <p>建站时间：2019年4月21日</p>
+                    <p>个人介绍：<span style="font-size: .8em;text-indent: 2em">了解一点点语言，全栈工程师，服务于全世界，现专注于大数据技术栈学习与应用，目前从事医疗大数据方向。</span></p>
+                    <p>随笔：<span style="font-size: .8em;text-indent: 2em">我喜欢程序员，他们单纯、固执、容易体会到成就感；面对压力，能够挑灯夜战不眠不休；面对困难，能够迎难而上挑战自我。
+                        他们也会感到困惑与傍徨，但每个程序员的心中都有一个比尔盖茨或是乔布斯的梦想“用智慧开创属于自己的事业”。我想说的是，其实我是一个程序员！</span></p>
                 </div>
                 <div class="ui piled basic segment">
-                    <h3 class="ui header">分类</h3>
+                    <h3 class="ui header">文章分类</h3>
+                    <div class="ui list">
+                        <div class="item">
+                            <i class="folder icon"></i>
+                            <div class="content">
+                                <div class="header">Java</div>
+                                <div class="ui animated relaxed list">
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章1</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章2</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章3</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章4</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            <div class="description">文章5</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章6</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章7</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章8</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章9</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="folder icon"></i>
+                            <div class="content">
+                                <div class="header">Linux</div>
+                                <div class="ui animated relaxed list">
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章1</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章2</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章3</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章4</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            <div class="description">文章5</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章6</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章7</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章8</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章9</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="folder icon"></i>
+                            <div class="content">
+                                <div class="header">Ealsticsearch</div>
+                                <div class="ui animated relaxed list">
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章1</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章2</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章3</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章4</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <div class="content">
+                                            <div class="description">文章5</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章6</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章7</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章8</div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="file icon"></i>
+                                        <a class="content">
+                                            <div class="description">文章9</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">标签</h3>
+                    <div class="ui mini basic labels">
+                        <a class="ui red label">标签1<div class="detail">22</div></a>
+                        <a class="ui orange label">标签2<div class="detail">22</div></a>
+                        <a class="ui yellow label">标签3<div class="detail">22</div></a>
+                        <a class="ui olive label">标签4<div class="detail">22</div></a>
+                        <a class="ui green label">标签5</a>
+                        <a class="ui teal label">标签6</a>
+                        <a class="ui blue label">标签7</a>
+                        <a class="ui violet label">标签8</a>
+                        <a class="ui purple label">标签9</a>
+                        <a class="ui pink label">标签10</a>
+                        <a class="ui brown label">标签11</a>
+                        <a class="ui grey label">标签12</a>
+                        <a class="ui black label">标签13</a>
+                        <a class="ui red label">标签14</a>
+                        <a class="ui yellow label">标签15</a>
+                        <a class="ui green label">标签16</a>
+                        <a class="ui blue label">标签17</a>
+                        <a class="ui violet label">标签18</a>
+                        <a class="ui purple label">标签19</a>
+                        <a class="ui pink label">标签20</a>
+                    </div>
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">时间</h3>
-                </div>
-                <div class="ui piled basic segment">
-                    <h3 class="ui header">评论</h3>
+                    <div class="ui animated list">
+                        <div class="item">
+                            <i class="clock icon"></i>
+                            <div class="content">
+                                <a class="header">2019年5月</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="clock icon"></i>
+                            <div class="content">
+                                <a class="header">2019年4月</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="clock icon"></i>
+                            <div class="content">
+                                <a class="header">2019年3月</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="clock icon"></i>
+                            <div class="content">
+                                <a class="header">2019之前</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -187,8 +431,6 @@
     <!--            </div>-->
     <!--        </th:block>-->
     <!--    </div>-->
-
-    <div th:replace="comm/page::page(${articles},'上一页','下一页','page')"></div>
 </section>
 <!--segment-->
 </body>

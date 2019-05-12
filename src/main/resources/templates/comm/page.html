@@ -3,7 +3,7 @@
 <body>
 <!--pageinfo-->
 <div th:fragment="pageNav(pageInfo, prevText, nextText, prefix)" class="ui container pageinfo">
-    <div class="ui huge right aligned pagination menu borderless">
+    <div class="ui mini right aligned pagination menu borderless">
         <!--上一页-->
         <a th:class="${pageInfo.hasPreviousPage} ?'icon link item':'icon link item disabled'"
            th:href="@{'/'+${prefix}+'/'+${pageInfo.prePage}}">

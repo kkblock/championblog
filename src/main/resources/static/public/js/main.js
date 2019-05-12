@@ -23,17 +23,17 @@ $(document).ready(function () {
         window.location.href = name;
     };
 
+    //为post页面设置样式
     $('.post-content table').addClass('ui celled table');
-    // $('.post-content h1').addClass('ui header brown').prepend('<i class="mini brown hashtag icon"></i>');
-    // $('.post-content h2').addClass('ui header brown').prepend('<i class="mini brown hashtag icon"></i>');
-    // $('.post-content h3').addClass('ui header brown').prepend('<i class="mini brown hashtag icon"></i>');
-    // $('.post-content h4').addClass('ui header brown').prepend('<i class="mini brown hashtag icon"></i>');
-    // $('.post-content h5').addClass('ui header brown').prepend('<i class="mini brown hashtag icon"></i>');
-    // $('.post-content h6').addClass('ui header brown').prepend('<i class="mini brown hashtag icon"></i>');
 
-    // $('.post-content > p').addClass('ui basic segment');
-    // $('.post-content ul').addClass('ui list');
-    // $('.post-content ol').addClass('ui list');
-    // $('.post-content li').addClass('item');
+
+    $('#messagecloseicon')
+        .on('click', function() {
+            $(this)
+                .closest('#messagetips')
+                .transition('fade')
+            ;
+        })
+    ;
 
 });
