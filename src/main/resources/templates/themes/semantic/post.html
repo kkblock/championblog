@@ -2,31 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="themes/semantic/header::header(${article.title},${article.tags})"></div>
 <body>
-    <section class="section">
-        <div class="ui container" style="padding: 3em 0 5em 0">
-            <div class="ui basic segment post-header">
-                <h1 class="ui header"><a th:href="${#request.getContextPath() + commons.permalink(article)}" th:text="${article.title}"></a></h1>
-                <p>
-                    <i class="user icon link"></i><th:block th:utext="${commons.getUserName(article.authorId)}"/>发布于
-                    <i class="clock icon"></i><th:block th:utext="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"/>
-                    <i class="archive icon"></i><th:block th:utext="${commons.show_categories(#request.getContextPath(),article.categories)}"/>
-                </p>
-                <div class="ui labels circular ptags">
-                    <a class="ui small label"
-                       th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}" th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
-                </div>
-            </div>
-            <div class="ui divider"></div>
-            <!--文章主题内容-->
-            <div class="ui basic segment post-content" id="post-content">
-                <th:block th:utext="${commons.article(article.content)}"/>
-            </div>
-            <div class="ui divider"></div>
-            <div class="ui basic segment post-info">
-                本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名,转载请标明出处<br/>最后编辑时间为:2019.04.20
+<section class="section">
+    <div class="ui container" style="padding: 3em 0 5em 0">
+        <div class="ui basic segment post-header">
+            <h1 class="ui header"><a th:href="${#request.getContextPath() + commons.permalink(article)}"
+                                     th:text="${article.title}"></a></h1>
+            <p>
+                <i class="user icon link"></i>
+                <th:block th:utext="${commons.getUserName(article.authorId)}"/>
+                发布于
+                <i class="clock icon"></i>
+                <th:block th:utext="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"/>
+                <i class="archive icon"></i>
+                <th:block th:utext="${commons.show_categories(#request.getContextPath(),article.categories)}"/>
+            </p>
+            <div class="ui labels circular ptags">
+                <a class="ui small label"
+                   th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"
+                   th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
             </div>
         </div>
-    </section>
+        <div class="ui divider"></div>
+        <!--文章主题内容-->
+        <div class="ui basic segment post-content" id="post-content">
+            <th:block th:utext="${commons.article(article.content)}"/>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui basic segment post-info">
+            本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名,转载请标明出处<br/>最后编辑时间为:2019.04.20
+        </div>
+    </div>
+    <div th:replace="themes/semantic/comments::comments"></div>
+</section>
 
 </body>
 <div th:replace="themes/semantic/footer::footer"></div>

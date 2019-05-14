@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="comments">
+<script th:inline="javascript">
+    $(document).ready(function () {
+        // 更换验证码
+        var ctx = [[${#request.getContextPath()}]];
+        replaceyzm = function () {
+            $('#captchaImage').attr("src", ctx + "/assist/captcha?timestamp=" + (new Date()).valueOf());
+        };
+        $('.fa-question').popup({
+            title:'',
+            content:'评论表单收集到你的姓名、邮箱、站点信息，允许我们适当的联系您。请读并同意条款和隐私政策。'
+        });
+    });
+</script>
+<body>
+<div class="ui container" style="margin-bottom: 3em">
+    <div class="ui comments">
+        <h3 class="ui header">评论</h3>
+        <form class="ui reply form small">
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input type="text" name="name" placeholder="姓名*"/>
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input type="text" name="code" placeholder="Code*"/>
+                        <i class="code icon"></i>
+                        <img class="ui tiny image" id="captchaImage" onclick="replaceyzm()"
+                             th:src="${#request.getContextPath() + '/assist/captcha'}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input type="text" name="email" placeholder="邮箱*"/>
+                        <i class="mail icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <input type="text" name="website" placeholder="站点(http://)"/>
+                        <i class="linkify icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <textarea placeholder="请输入评论..."></textarea>
+            </div>
+            <div class="inline field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" tabindex="0"/>
+                    <label>我同意条款和隐私政策 |<i
+                            class="icon question outline link gyey circle fa-question" data-variation="inverted"></i></label>
+                </div>
+            </div>
+            <div class="ui blue labeled submit icon button"><i class="icon edit"></i>提交</div>
+        </form>
+        <div class="ui divider section"></div>
+        <div class="comment">
+            <a class="avatar">
+                <img th:src="${#request.getContextPath() + '/public/images/avatar/matt.jpg'}" />
+            </a>
+            <div class="content">
+                <a class="author">Matt</a>
+                <div class="metadata">
+                    <span class="date">今天下午 5:42</span>
+                </div>
+                <div class="text">太赞了！</div>
+                <div class="actions">
+                    <a class="reply">Reply</a>
+                </div>
+            </div>
+        </div>
+        <div class="comment">
+            <a class="avatar">
+                <img th:src="${#request.getContextPath() + '/public/images/avatar/elliot.jpg'}" />
+            </a>
+            <div class="content">
+                <a class="author">Elliot Fu</a>
+                <div class="metadata">
+                    <span class="date">昨天上午12:30</span>
+                </div>
+                <div class="text">
+                    <p>這對我的研究是非常有用.謝謝!</p>
+                </div>
+                <div class="actions">
+                    <a class="reply">Reply</a>
+                </div>
+            </div>
+        </div>
+        <div class="comment">
+            <a class="avatar">
+                <img th:src="${#request.getContextPath() + '/public/images/avatar/joe.jpg'}" />
+            </a>
+            <div class="content">
+                <a class="author">Joe Henderson</a>
+                <div class="metadata">
+                    <span class="date">5 天以前</span>
+                </div>
+                <div class="text">  这太棒了。非常感谢。</div>
+                <div class="actions">
+                    <a class="reply">Reply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
