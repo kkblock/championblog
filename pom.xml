@@ -23,6 +23,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <commons.lang.version>3.7</commons.lang.version>
+        <mybatis.plugin.version>1.3.7</mybatis.plugin.version>
+        <dao.target.dir>src/main/java</dao.target.dir>
     </properties>
 
     <dependencies>
@@ -96,7 +98,7 @@
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.7</version>
+            <version>${mybatis.plugin.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -137,9 +139,9 @@
         </dependency>
         <!--&lt;!&ndash;  Apache Http &ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpcore</artifactId>-->
-            <!--<version>4.4.5</version>-->
+        <!--<groupId>org.apache.httpcomponents</groupId>-->
+        <!--<artifactId>httpcore</artifactId>-->
+        <!--<version>4.4.5</version>-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/com.arronlong/httpclientutil -->
         <dependency>
@@ -262,8 +264,8 @@
     <build>
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--</plugin>-->
             <!--用这种方式打包也可以-->
             <plugin>
@@ -283,6 +285,10 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <showWarnings>true</showWarnings>
+                    <compilerArguments>
+                        <verbose/>
+                        <bootclasspath>${java.home}/lib/rt.jar:${java.home}/lib/jce.jar</bootclasspath>
+                    </compilerArguments>
                 </configuration>
             </plugin>
             <!-- resource插件 -->
@@ -290,6 +296,40 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!--            mybatis插件设置-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>${mybatis.plugin.version}</version>
+                <configuration>
+                    <configurationFile>src/main/resources/mybatis-generator/generatorConfig.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-core</artifactId>
+                        <version>${mybatis.plugin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.13</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
