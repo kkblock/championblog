@@ -31,39 +31,39 @@
     <div class="ui main container">
         <div class="ui divider"></div>
         <div class="ui container grid three column padded divided stackable">
-            <!--recommand-->
-            <div id="recommand" class="three wide column">
-                <div class="ui basic segment">
-                    <h3 class="ui header">WHAT'S NOT</h3>
-                    <div class="ui bulleted link list">
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>
-                    </div>
+            <div class="ui icon warning floating message" id="messagetips">
+                <i class="smile outline icon"></i>
+                <i class="close icon" id="messagecloseicon"></i>
+                <div class="content">
+                    <div class="header">Sorry</div>
+                    <p>本站刚刚开发不久，部分功能还在测试中，文章可以正常浏览。</p>
                 </div>
             </div>
+            <!--recommand-->
+<!--            <div id="recommand" class="three wide column">-->
+<!--                <div class="ui basic segment">-->
+<!--                    <h3 class="ui header">WHAT'S NOT</h3>-->
+<!--                    <div class="ui bulleted link list">-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <!--articles-->
-            <div id="articles" class="nine wide column">
-                <div class="ui icon warning floating message" id="messagetips">
-                    <i class="smile outline icon"></i>
-                    <i class="close icon" id="messagecloseicon"></i>
-                    <div class="content">
-                        <div class="header">Sorry</div>
-                        <p>本站刚刚开发不久，部分功能还在测试中，文章可以正常浏览。</p>
-                    </div>
-                </div>
+            <div id="articles" class="eleven wide column">
                 <!--no article-->
                 <th:block th:if="${commons.is_empty(articles)}">
                     <div class="ui segment basic">
@@ -114,11 +114,11 @@
                 <div th:replace="comm/page::page(${articles},'上一页','下一页','page')"></div>
             </div>
             <!--extrainfo-->
-            <div id="extrainfo" class="four wide column">
+            <div id="extrainfo" class="five wide column">
                 <div class="ui search">
-                    <div class="ui icon input">
+                    <div class="ui icon fluid input" id="searcharticleinput">
                         <input id="searchinfo" class="prompt" type="text" placeholder="search..."/>
-                        <i class="search icon blue link" onclick="searchinfo();"></i>
+                        <i class="search icon blue link searcharticle" data-variation="inverted" onclick="searchinfo();"></i>
                     </div>
                 </div>
                 <div class="ui piled basic segment">

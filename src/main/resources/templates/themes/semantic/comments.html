@@ -63,50 +63,53 @@
             <div class="ui blue labeled submit icon button"><i class="icon edit"></i>提交</div>
         </form>
         <div class="ui divider section"></div>
-        <div class="comment">
-            <a class="avatar">
-                <img th:src="${#request.getContextPath() + '/public/images/avatar/matt.jpg'}" />
-            </a>
-            <div class="content">
-                <a class="author">Matt</a>
-                <div class="metadata">
-                    <span class="date">今天下午 5:42</span>
-                </div>
-                <div class="text">太赞了！</div>
-                <div class="actions">
-                    <a class="reply">Reply</a>
-                </div>
-            </div>
-        </div>
-        <div class="comment">
-            <a class="avatar">
-                <img th:src="${#request.getContextPath() + '/public/images/avatar/elliot.jpg'}" />
-            </a>
-            <div class="content">
-                <a class="author">Elliot Fu</a>
-                <div class="metadata">
-                    <span class="date">昨天上午12:30</span>
-                </div>
-                <div class="text">
-                    <p>這對我的研究是非常有用.謝謝!</p>
-                </div>
-                <div class="actions">
-                    <a class="reply">Reply</a>
+        <div class="ui segment basic">
+            <div class="comment">
+                <a class="avatar">
+                    <img th:src="${#request.getContextPath() + '/public/images/avatar/photo.jpg'}"/>
+                </a>
+                <div class="content">
+<!--                    <i class="large user secret icon"></i>-->
+                    <span class="author">Matt</span>
+                    <div class="metadata">
+                        <span class="date">今天下午 5:42</span>
+                    </div>
+                    <div class="text">太赞了！</div>
+                    <!--                <div class="actions">-->
+                    <!--                    <a class="reply">Reply</a>-->
+                    <!--                </div>-->
                 </div>
             </div>
         </div>
-        <div class="comment">
-            <a class="avatar">
-                <img th:src="${#request.getContextPath() + '/public/images/avatar/joe.jpg'}" />
-            </a>
-            <div class="content">
-                <a class="author">Joe Henderson</a>
-                <div class="metadata">
-                    <span class="date">5 天以前</span>
+        <div class="ui segment basic">
+            <div class="comment">
+                <a class="avatar">
+                    <img th:src="${#request.getContextPath() + '/public/images/avatar/photo.jpg'}"/>
+                </a>
+                <div class="content">
+<!--                    <i class="large user secret icon"></i>-->
+                    <span class="author">Elliot Fu</span>
+                    <div class="metadata">
+                        <span class="date">昨天上午12:30</span>
+                    </div>
+                    <div class="text">
+                        <p>這對我的研究是非常有用.謝謝!</p>
+                    </div>
                 </div>
-                <div class="text">  这太棒了。非常感谢。</div>
-                <div class="actions">
-                    <a class="reply">Reply</a>
+            </div>
+        </div>
+        <div class="ui segment basic">
+            <div class="comment">
+                <a class="avatar">
+                    <img th:src="${#request.getContextPath() + '/public/images/avatar/photo.jpg'}"/>
+                </a>
+                <div class="content">
+<!--                    <i class="large user secret icon"></i>-->
+                    <a class="author">Joe Henderson</a>
+                    <div class="metadata">
+                        <span class="date">5 天以前</span>
+                    </div>
+                    <div class="text">  这太棒了。非常感谢。</div>
                 </div>
             </div>
         </div>

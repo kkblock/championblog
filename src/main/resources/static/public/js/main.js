@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //固定顶部
+    //顶部菜单初始化顶部
     $('.main.menu').visibility({
         type: 'fixed'
     });
@@ -28,12 +28,18 @@ $(document).ready(function () {
 
 
     $('#messagecloseicon')
-        .on('click', function() {
+        .on('click', function () {
             $(this)
                 .closest('#messagetips')
                 .transition('fade')
             ;
         })
     ;
+
+    //初始化搜索提示框,功能未开发
+    var searcharticleObj = $('.searcharticle');
+    searcharticleObj.popup({
+        content: '功能开发中...'
+    });
 
 });

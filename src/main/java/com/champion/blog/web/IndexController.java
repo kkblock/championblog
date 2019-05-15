@@ -324,6 +324,7 @@ public class IndexController extends BaseController {
         return this.render("page-category");
     }
 
+
     /**
      * 友链页
      *
