@@ -35,6 +35,7 @@ import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class IndexController extends BaseController {
@@ -69,7 +70,7 @@ public class IndexController extends BaseController {
      * @return this.index(request, 1, limit);
      */
     @GetMapping(value = "/")
-    public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         return this.index(request, 1, limit);
     }
 
@@ -82,10 +83,20 @@ public class IndexController extends BaseController {
      * @return 主页
      */
     @GetMapping(value = "page/{p}")
-    public String index(HttpServletRequest request, @PathVariable int p, @RequestParam(value = "limit", defaultValue = "10") int limit) {
+    public String index(HttpServletRequest request, @PathVariable int p, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         p = p < 0 || p > WebConst.MAX_PAGE ? 1 : p;
         PageInfo<ContentVo> articles = contentService.getContents(p, limit);
+        List<ContentVo> newestArticles = contentService.getNewestArticles( 10);
+        Map<String, List<ContentVo>> categoryContents = contentService.findContentsByCategory("java", "software");//这里根据本人情况设置指定的分类
+        List<MetaVo> metas = metaService.getMetas(Types.TAG.getType());
+        List<String> tags = new ArrayList<>();
+        metas.forEach(d -> {
+            tags.add(d.getName());
+        });
+        request.setAttribute("tags", tags);
         request.setAttribute("articles", articles);
+        request.setAttribute("newestArticles", newestArticles);
+        request.setAttribute("categoryContents",categoryContents);
         if (p > 1) {
             this.title(request, "第" + p + "页");
         }
@@ -256,13 +267,13 @@ public class IndexController extends BaseController {
      * @return this.categories(request, keyword, 1, limit);
      */
     @GetMapping(value = "category/{keyword}")
-    public String categories(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String categories(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         return this.categories(request, keyword, 1, limit);
     }
 
     @GetMapping(value = "category/{keyword}/{page}")
     public String categories(HttpServletRequest request, @PathVariable String keyword,
-                             @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+                             @PathVariable int page, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
         MetaDto metaDto = metaService.getMeta(Types.CATEGORY.getType(), keyword);
         if (null == metaDto) {
@@ -294,17 +305,18 @@ public class IndexController extends BaseController {
 
     /**
      * 根据类别归档
+     *
      * @param request request
-     * @param limit limit
+     * @param limit   limit
      * @return this.archivesByCategories(request, 1, limit);
      */
     @GetMapping(value = "archives/category")
-    public String archivesByCategories(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String archivesByCategories(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         return this.archivesByCategories(request, 1, limit);
     }
 
     @GetMapping(value = "archives/category/{page}")
-    public String archivesByCategories(HttpServletRequest request, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String archivesByCategories(HttpServletRequest request, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
         List<MetaVo> metas = metaService.getMetas(Types.CATEGORY.getType());
 
@@ -374,12 +386,12 @@ public class IndexController extends BaseController {
      * @return this.search(request, keyword, 1, limit);
      */
     @GetMapping(value = "search/{keyword}")
-    public String search(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String search(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         return this.search(request, keyword, 1, limit);
     }
 
     @GetMapping(value = "search/{keyword}/{page}")
-    public String search(HttpServletRequest request, @PathVariable String keyword, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String search(HttpServletRequest request, @PathVariable String keyword, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
         PageInfo<ContentVo> articles = contentService.getArticles(keyword, page, limit);
         request.setAttribute("articles", articles);
@@ -397,12 +409,12 @@ public class IndexController extends BaseController {
      * @return page-category
      */
     @GetMapping(value = "posted/{uid}")
-    public String searchByAuthor(HttpServletRequest request, @PathVariable int uid, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String searchByAuthor(HttpServletRequest request, @PathVariable int uid, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         return this.searchByAuthor(request, uid, 1, limit);
     }
 
     @GetMapping(value = "posted/{uid}/{page}")
-    public String searchByAuthor(HttpServletRequest request, @PathVariable int uid, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String searchByAuthor(HttpServletRequest request, @PathVariable int uid, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
         PageInfo<ContentVo> articles = contentService.getArticlesByUid(uid, page, limit);
         request.setAttribute("articles", articles);
@@ -441,7 +453,7 @@ public class IndexController extends BaseController {
      * @return this.tags(request, name, 1, limit);
      */
     @GetMapping(value = "tag/{name}")
-    public String tags(HttpServletRequest request, @PathVariable String name, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String tags(HttpServletRequest request, @PathVariable String name, @RequestParam(value = "limit", defaultValue = "15") int limit) {
         return this.tags(request, name, 1, limit);
     }
 
@@ -455,7 +467,7 @@ public class IndexController extends BaseController {
      * @return this.render(" page - category ");
      */
     @GetMapping(value = "tag/{name}/{page}")
-    public String tags(HttpServletRequest request, @PathVariable String name, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    public String tags(HttpServletRequest request, @PathVariable String name, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "15") int limit) {
 
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
 //        对于空格的特殊处理

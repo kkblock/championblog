@@ -15,7 +15,6 @@ public class WebConst {
 
     public static List<UserVo> userAll = new ArrayList<>();
 
-
     public static String LOGIN_SESSION_KEY = "login_user";
 
     public static final String USER_IN_COOKIE = "S_L_ID";

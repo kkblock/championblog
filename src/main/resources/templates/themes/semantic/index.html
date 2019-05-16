@@ -29,89 +29,71 @@
     <!--    </div>-->
     <!-- middle container -->
     <div class="ui main container">
-        <div class="ui divider"></div>
-        <div class="ui container grid three column padded divided stackable">
+<!--        <div class="ui divider"></div>-->
+        <div class="ui container grid two column padded divided stackable">
             <div class="ui icon warning floating message" id="messagetips">
                 <i class="smile outline icon"></i>
                 <i class="close icon" id="messagecloseicon"></i>
                 <div class="content">
                     <div class="header">Sorry</div>
-                    <p>本站刚刚开发不久，部分功能还在测试中，文章可以正常浏览。</p>
+                    <p>本站刚刚开发不久，部分页面和功能还在测试中，文章可以正常浏览。</p>
                 </div>
             </div>
-            <!--recommand-->
-<!--            <div id="recommand" class="three wide column">-->
-<!--                <div class="ui basic segment">-->
-<!--                    <h3 class="ui header">WHAT'S NOT</h3>-->
-<!--                    <div class="ui bulleted link list">-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                        <a class="item">How to Start a Blog with WordPress (Step by Step Guide for Blog Hosting)</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
             <!--articles-->
             <div id="articles" class="eleven wide column">
-                <!--no article-->
-                <th:block th:if="${commons.is_empty(articles)}">
-                    <div class="ui segment basic">
-                        <p>抱歉，还没有相关文章.</p>
-                    </div>
-                </th:block>
-                <th:block th:unless="${commons.is_empty(articles)}">
-                    <!--articles-->
-                    <div class="ui segment basic vertical" id="articlestiky">
-                        <!--articles items-->
-                        <div class="ui very relaxed unstackable items" th:each="article,userStat: ${articles.list}">
-                            <div class="item">
-                                <a class="ui small image"
-                                   th:href="${#request.getContextPath() + '/category/' + article.categories}">
-                                    <img th:src="@{'/public/images/category/' + ${article.categories == null? 'code': article.categories} + '.jpg.webp'}"
-                                         alt="类别"/>
-                                </a>
-                                <div class="content">
-                                    <a class="ui header"
-                                       th:href="${#request.getContextPath() + commons.permalink(article)}"><h2
-                                            th:text="${article.title}"></h2></a>
-                                    <!--<a class="header">elasticsearch mapping 作用</a>-->
-                                    <div class="meta articlemeta">
-                                        <i class="small grey user icon" style="margin: 0 5px"></i><a
-                                            th:href="${#request.getContextPath() + '/posted/' + article.authorId}"
-                                            th:text="${commons.getUserName(article.authorId)}"></a>
-                                        <i class="small grey clock icon" style="margin: 0 5px"></i>
-                                        <span th:text="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"></span>
-                                    </div>
-                                    <div class="description article">
-                                        <p th:text="${commons.intro(article.content,100)}">
-                                        </p>
-                                    </div>
-                                    <div class="ui labels extra ptags">
-                                        <a class="ui small label"
-                                           th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"
-                                           th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
-                                        <a class="ui mini right floated primary button"
-                                           th:href="${#request.getContextPath() + commons.permalink(article)}">进入阅读 <i
-                                                class="right chevron icon"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ui divider" th:if="${!userStat.last}"></div>
+                <div class="ui basic segment">
+                    <!--no article-->
+                    <th:block th:if="${commons.is_empty(articles)}">
+                        <div class="ui segment basic">
+                            <p>抱歉，还没有相关文章.</p>
                         </div>
-                    </div>
-                </th:block>
-                <div th:replace="comm/page::page(${articles},'上一页','下一页','page')"></div>
+                    </th:block>
+                    <th:block th:unless="${commons.is_empty(articles)}">
+                        <!--articles-->
+                        <div class="ui segment basic vertical" id="articlestiky">
+                            <!--articles items-->
+                            <div class="ui very relaxed divided unstackable items">
+                                <th:block th:each="article,userStat: ${articles.list}">
+                                    <div class="item">
+                                        <a class="ui small image"
+                                           th:href="${#request.getContextPath() + '/category/' + article.categories}">
+                                            <img th:src="@{'/public/images/category/' + ${article.categories == null? 'code': article.categories} + '.jpg.webp'}"
+                                                 alt="类别"/>
+                                        </a>
+                                        <div class="content">
+                                            <a class="ui header"
+                                               th:href="${#request.getContextPath() + commons.permalink(article)}"><h2
+                                                    th:text="${article.title}"></h2></a>
+                                            <div class="meta articlemeta">
+                                                <i class="small grey user icon" style="margin: 0 5px"></i><a
+                                                    th:href="${#request.getContextPath() + '/posted/' + article.authorId}"
+                                                    th:text="${commons.getUserName(article.authorId)}"></a>
+                                                <i class="small grey clock icon" style="margin: 0 5px"></i>
+                                                <span th:text="${commons.fmtdate(article.created,'yyyy年MM月dd日 HH:mm')}"></span>
+                                            </div>
+                                            <div class="description article">
+                                                <p th:text="${commons.intro(article.content,100)}">
+                                                </p>
+                                            </div>
+                                            <div class="ui labels extra ptags">
+                                                <a class="ui small label"
+                                                   th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"
+                                                   th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
+                                                <a class="ui mini right floated primary button"
+                                                   th:href="${#request.getContextPath() + commons.permalink(article)}">进入阅读 <i
+                                                        class="right chevron icon"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <!--分页-->
+                <div class="ui basic segment">
+                    <div th:replace="comm/page::page(${articles},'上一页','下一页','page')"></div>
+                </div>
             </div>
             <!--extrainfo-->
             <div id="extrainfo" class="five wide column">
@@ -131,222 +113,49 @@
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">最新随笔</h3>
+                    <div class="ui relaxed ordered animated list">
+                        <th:block th:each="article,articleStat:${newestArticles}">
+                            <a class="item" th:text="${article.title}" th:href="${#request.getContextPath() + commons.permalink(article)}"></a>
+                        </th:block>
+                    </div>
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">随笔分类</h3>
                     <div class="ui list">
-                        <div class="item">
-                            <i class="folder icon"></i>
-                            <div class="content">
-                                <div class="header">Java</div>
-                                <div class="ui animated relaxed list">
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章1</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章2</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章3</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章4</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <div class="content">
-                                            <div class="description">文章5</div>
+                        <th:block th:if="${commons.is_map_null(categoryContents) == true}">
+                            抱歉，暂无分类。
+                        </th:block>
+                        <th:block th:if="${commons.is_map_null(categoryContents) == false}">
+                            <div class="item" th:each="caCt,caCtStat:${categoryContents}">
+                                <i class="folder icon"></i>
+                                <div class="content">
+                                    <div class="ui header" th:text="${caCt.key}"></div>
+                                    <div class="ui animated relaxed list">
+                                        <div class="item" th:each="article,articleStat:${caCt.value}">
+                                            <i class="file icon"></i>
+                                            <a class="content" th:href="${#request.getContextPath() + commons.permalink(article)}">
+                                                <div class="description" th:text="${article.title}"></div>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章6</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章7</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章8</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章9</div>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <i class="folder icon"></i>
-                            <div class="content">
-                                <div class="header">Linux</div>
-                                <div class="ui animated relaxed list">
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章1</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章2</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章3</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章4</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <div class="content">
-                                            <div class="description">文章5</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章6</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章7</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章8</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章9</div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <i class="folder icon"></i>
-                            <div class="content">
-                                <div class="header">Ealsticsearch</div>
-                                <div class="ui animated relaxed list">
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章1</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章2</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章3</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章4</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <div class="content">
-                                            <div class="description">文章5</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章6</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章7</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章8</div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <i class="file icon"></i>
-                                        <a class="content">
-                                            <div class="description">文章9</div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </th:block>
                     </div>
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">我的标签</h3>
-                    <div class="ui mini basic labels">
-                        <a class="ui red label">标签1<div class="detail">(22)</div></a>
-                        <a class="ui orange label">标签2<div class="detail">(22)</div></a>
-                        <a class="ui yellow label">标签3<div class="detail">(22)</div></a>
-                        <a class="ui olive label">标签4<div class="detail">(22)</div></a>
-                        <a class="ui green label">标签5<div class="detail">(22)</div></a>
-                        <a class="ui teal label">标签6<div class="detail">(22)</div></a>
-                        <a class="ui blue label">标签7<div class="detail">(22)</div></a>
-                        <a class="ui violet label">标签8<div class="detail">(22)</div></a>
-                        <a class="ui purple label">标签9<div class="detail">(22)</div></a>
-                        <a class="ui pink label">标签10<div class="detail">(22)</div></a>
-                        <a class="ui brown label">标签11</a>
-                        <a class="ui grey label">标签12</a>
-                        <a class="ui black label">标签13</a>
-                        <a class="ui red label">标签14</a>
-                        <a class="ui yellow label">标签15</a>
-                        <a class="ui green label">标签16</a>
-                        <a class="ui blue label">标签17</a>
-                        <a class="ui violet label">标签18</a>
-                        <a class="ui purple label">标签19</a>
-                        <a class="ui pink label">标签20</a>
-                    </div>
+                    <th:block th:if="${commons.is_list_null(tags) == false}">
+                        <div class="ui basic labels" id="mylabels">
+                            <th:block th:each="tag,tagStat: ${tags}">
+                                <a th:class="${commons.getRandomColor(tagStat.count - 1)}" th:if="${tagStat.index <= 20}" th:text="${tag}"></a>
+                                <a class="ui large label black" th:if="${tagStat.size > 20 && tagStat.index == 20}" th:text="查看全部"></a>
+                            </th:block>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${commons.is_list_null(tags) == true}">
+                        抱歉，暂无标签。
+                    </th:block>
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">随笔档案</h3>

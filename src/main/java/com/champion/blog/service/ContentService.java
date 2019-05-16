@@ -4,6 +4,9 @@ import com.champion.blog.model.vo.ContentVo;
 import com.champion.blog.model.vo.ContentVoExample;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ContentService {
 
     /**
@@ -87,5 +90,17 @@ public interface ContentService {
      * @param newCatefory newCatefory
      */
     void updateCategory(String ordinal,String newCatefory);
+
+    /**
+     * 获取最新随笔文章
+     * @param limit 条数
+     * @return List<ContentVo>
+     */
+    List<ContentVo> getNewestArticles(Integer limit);
+
+    /**
+     * 查询多个分类
+     */
+    Map<String, List<ContentVo>> findContentsByCategory(String... categorys);
 
 }

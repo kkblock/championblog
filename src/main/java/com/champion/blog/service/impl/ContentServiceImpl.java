@@ -23,7 +23,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service(value = "contentService")
 public class ContentServiceImpl implements ContentService {
@@ -191,6 +193,34 @@ public class ContentServiceImpl implements ContentService {
         ContentVoExample example = new ContentVoExample();
         example.createCriteria().andCategoriesEqualTo(ordinal);
         contentDao.updateByExampleSelective(contentVo, example);
+    }
+
+    @Override
+    public List<ContentVo> getNewestArticles(Integer limit) {
+        LOGGER.debug("Enter getContents method");
+        ContentVoExample example = new ContentVoExample();
+        example.setOrderByClause("created desc");
+        example.setLimit(limit);
+        example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
+        List<ContentVo> data = contentDao.selectByExample(example);
+        LOGGER.debug("Exit getContents method");
+        return data;
+    }
+
+    @Override
+    public Map<String, List<ContentVo>> findContentsByCategory(String... categorys) {
+        ContentVoExample example;
+        List<ContentVo> data;
+        Map<String, List<ContentVo>> resultMap = new HashMap<>();
+        for (String category :categorys) {
+            example = new ContentVoExample();
+            example.setOrderByClause("created desc");
+            example.setLimit(10);
+            example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType()).andCategoriesEqualTo(category);
+            data = contentDao.selectByExample(example);
+            resultMap.put(category,data);
+        }
+        return resultMap;
     }
 
     @Override
