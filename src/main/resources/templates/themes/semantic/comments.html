@@ -17,7 +17,7 @@
 <div class="ui container" style="margin-bottom: 3em">
     <div class="ui comments">
         <h3 class="ui header">评论</h3>
-        <form class="ui reply form small">
+        <form class="ui reply form small" method="post" id="comment-form">
             <div class="two fields">
                 <div class="field">
                     <div class="ui left icon input">
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="field">
-                <textarea placeholder="请输入评论..."></textarea>
+                <textarea name="comment" placeholder="请输入评论..."></textarea>
             </div>
             <div class="inline field">
                 <div class="ui toggle checkbox">
@@ -61,6 +61,7 @@
                 </div>
             </div>
             <div class="ui blue labeled submit icon button"><i class="icon edit"></i>提交</div>
+            <div class="ui error message"></div>
         </form>
         <div class="ui divider section"></div>
         <div class="ui segment basic">

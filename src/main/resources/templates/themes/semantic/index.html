@@ -29,7 +29,7 @@
     <!--    </div>-->
     <!-- middle container -->
     <div class="ui main container">
-<!--        <div class="ui divider"></div>-->
+        <!--        <div class="ui divider"></div>-->
         <div class="ui container grid two column padded divided stackable">
             <div class="ui icon warning floating message" id="messagetips">
                 <i class="smile outline icon"></i>
@@ -77,11 +77,13 @@
                                             </div>
                                             <div class="ui labels extra ptags">
                                                 <a class="ui small label"
-                                                   th:each="tag: ${#strings.listSplit(article.tags,',')}" th:text="${tag}"
+                                                   th:each="tag: ${#strings.listSplit(article.tags,',')}"
+                                                   th:text="${tag}"
                                                    th:href="${#request.getContextPath() + '/tag/' + tag}"></a>
                                                 <a class="ui mini right floated primary button"
-                                                   th:href="${#request.getContextPath() + commons.permalink(article)}">进入阅读 <i
-                                                        class="right chevron icon"></i></a>
+                                                   th:href="${#request.getContextPath() + commons.permalink(article)}">进入阅读
+                                                    <i
+                                                            class="right chevron icon"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -100,14 +102,16 @@
                 <div class="ui search">
                     <div class="ui icon fluid input" id="searcharticleinput">
                         <input id="searchinfo" class="prompt" type="text" placeholder="search..."/>
-                        <i class="search icon blue link searcharticle" data-variation="inverted" onclick="searchinfo();"></i>
+                        <i class="search icon blue link searcharticle" data-variation="inverted"
+                           onclick="searchinfo();"></i>
                     </div>
                 </div>
                 <div class="ui piled basic segment">
                     <h3 class="ui header">本站说明</h3>
                     <p>作者：邝凯</p>
                     <p>建站时间：2019年4月21日</p>
-                    <p>个人介绍：<span style="font-size: .8em;text-indent: 2em">了解一点点语言，全栈工程师，服务于全世界，现专注于大数据技术栈学习与应用，目前从事医疗大数据方向。</span></p>
+                    <p>个人介绍：<span style="font-size: .8em;text-indent: 2em">了解一点点语言，全栈工程师，服务于全世界，现专注于大数据技术栈学习与应用，目前从事医疗大数据方向。</span>
+                    </p>
                     <p>随笔：<span style="font-size: .8em;text-indent: 2em">我喜欢程序员，他们单纯、固执、容易体会到成就感；面对压力，能够挑灯夜战不眠不休；面对困难，能够迎难而上挑战自我。
                         他们也会感到困惑与傍徨，但每个程序员的心中都有一个比尔盖茨或是乔布斯的梦想“用智慧开创属于自己的事业”。我想说的是，其实我是一个程序员！</span></p>
                 </div>
@@ -115,7 +119,8 @@
                     <h3 class="ui header">最新随笔</h3>
                     <div class="ui relaxed ordered animated list">
                         <th:block th:each="article,articleStat:${newestArticles}">
-                            <a class="item" th:text="${article.title}" th:href="${#request.getContextPath() + commons.permalink(article)}"></a>
+                            <a class="item" th:text="${article.title}"
+                               th:href="${#request.getContextPath() + commons.permalink(article)}"></a>
                         </th:block>
                     </div>
                 </div>
@@ -133,7 +138,8 @@
                                     <div class="ui animated relaxed list">
                                         <div class="item" th:each="article,articleStat:${caCt.value}">
                                             <i class="file icon"></i>
-                                            <a class="content" th:href="${#request.getContextPath() + commons.permalink(article)}">
+                                            <a class="content"
+                                               th:href="${#request.getContextPath() + commons.permalink(article)}">
                                                 <div class="description" th:text="${article.title}"></div>
                                             </a>
                                         </div>
@@ -148,8 +154,11 @@
                     <th:block th:if="${commons.is_list_null(tags) == false}">
                         <div class="ui basic labels" id="mylabels">
                             <th:block th:each="tag,tagStat: ${tags}">
-                                <a th:class="${commons.getRandomColor(tagStat.count - 1)}" th:if="${tagStat.index <= 20}" th:text="${tag}"></a>
-                                <a class="ui large label black" th:if="${tagStat.size > 20 && tagStat.index == 20}" th:text="查看全部"></a>
+                                <a th:class="${commons.getRandomColor(tagStat.index)}" th:if="${tagStat.index< 20}"
+                                   th:text="${tag.name + ' (' + tag.count + ')'}">
+                                </a>
+                                <a class="ui large label black" th:if="${tagStat.index == 19}"
+                                   th:text="查看全部"></a>
                             </th:block>
                         </div>
                     </th:block>

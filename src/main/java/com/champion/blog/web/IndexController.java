@@ -88,11 +88,7 @@ public class IndexController extends BaseController {
         PageInfo<ContentVo> articles = contentService.getContents(p, limit);
         List<ContentVo> newestArticles = contentService.getNewestArticles( 10);
         Map<String, List<ContentVo>> categoryContents = contentService.findContentsByCategory("java", "software");//这里根据本人情况设置指定的分类
-        List<MetaVo> metas = metaService.getMetas(Types.TAG.getType());
-        List<String> tags = new ArrayList<>();
-        metas.forEach(d -> {
-            tags.add(d.getName());
-        });
+        List<MetaDto> tags = metaService.getMetaList(Types.TAG.getType(), null, 20);//WebConst.MAX_POSTS
         request.setAttribute("tags", tags);
         request.setAttribute("articles", articles);
         request.setAttribute("newestArticles", newestArticles);

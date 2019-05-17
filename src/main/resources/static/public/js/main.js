@@ -42,4 +42,38 @@ $(document).ready(function () {
         content: '功能开发中...'
     });
 
+    //初始化评论验证
+    $('#comment-form').form({
+        on: 'blur',
+        fields: {
+            name: {
+                identifier: 'name',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '名称不能为空'
+                    }
+                ]
+            },
+            code: {
+                identifier: 'code',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '请输入验证码'
+                    }
+                ]
+            },
+            email: {
+                identifier: 'email',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '邮箱不能为空'
+                    }
+                ]
+            }
+        }
+    })
+
 });
